@@ -1,4 +1,4 @@
-package com.workingsafe.safetyapp.counseling;
+package com.workingsafe.safetyapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
