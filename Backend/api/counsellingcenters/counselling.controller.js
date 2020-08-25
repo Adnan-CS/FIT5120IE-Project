@@ -1,10 +1,10 @@
-const { getAllCenters } = require("./center.service")
+const { getAllCounsellingCenters } = require("./counselling.service")
 
 
 module.exports = {
-    getNearestCenters: (req, res) => {
+    getNearestCounselling: (req, res) => {
       const body = req.body;
-      getAllCenters(body, (err, results) => {
+      getAllCounsellingCenters(body, (err, results) => {
         if (err) {
           console.log(err);
           return res.status(500).json({
@@ -14,7 +14,7 @@ module.exports = {
         }
         return res.status(200).json({
           success: 1,
-          data: calculateNearestCentre(body,results)
+          data: calculateNearestCounselling(body,results)
         });
       });
     }
@@ -28,12 +28,12 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   
     return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
   }
-function calculateNearestCentre(body,results){
+function calculateNearestCounselling(body,results){
     nearestCentre = {};
     count = 0;
     myResults = results;
     i = 0;
-    for(val of results){ //-37.802327, 144.961484
+    for(val of results){
         distance = calculateDistance(val.latitude,val.longitude,body.latitude,body.longitude);
         myResults[i].calculatedDistance = distance;
         i++;
