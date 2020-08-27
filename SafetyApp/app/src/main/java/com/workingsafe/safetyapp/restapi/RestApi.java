@@ -17,7 +17,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class RestApi {
-    private static final String BASE_URL = "http://10.0.2.2:4004/api";
+    private static final String BASE_URL = "http://192.168.1.104:4004/api";
+    //private static final String BASE_URL = "http://10.0.2.2:4004/api";
     private OkHttpClient client=null;
     private static final String TAG = "ADDMEMOIRDATA";
 
@@ -52,7 +53,7 @@ public class RestApi {
         return legalcenters;
     }
 
-    public List<Counsellingcenters> getNearestCpunselling(CurrentLocation currentLocation){
+    public List<Counsellingcenters> getNearestCounselling(CurrentLocation currentLocation){
         String finalResult = "";
         List<Counsellingcenters> counsellingcenters=null;
         Gson gson = new Gson();

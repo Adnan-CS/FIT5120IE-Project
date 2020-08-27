@@ -10,9 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import com.workingsafe.safetyapp.model.Counsellingcenters;
 import com.workingsafe.safetyapp.model.CurrentLocation;
 import com.workingsafe.safetyapp.model.Legalcenters;
 import com.workingsafe.safetyapp.restapi.RestApi;
+import com.workingsafe.safetyapp.utility.Utility;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);//counselingMap
         counselingCard = findViewById(R.id.counselingMap);
         restApi = new RestApi();
-        CurrentLocation currentLocation = new CurrentLocation(BigDecimal.valueOf(-37.875966),BigDecimal.valueOf(145.049276));
-        FetchCentersTask fetchCentersTask = new FetchCentersTask();
-        fetchCentersTask.execute(currentLocation);
         counselingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,CounselingActivity.class);
-                startActivity(intent);
+                if(Utility.checkNetworkConnection(MainActivity.this) && Utility.LocationEnableRequest(MainActivity.this)){
+                    Intent intent = new Intent(MainActivity.this,CounselingActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
     }
