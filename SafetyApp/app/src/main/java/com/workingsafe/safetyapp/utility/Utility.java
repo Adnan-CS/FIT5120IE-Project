@@ -27,7 +27,7 @@ public class Utility {
             e.printStackTrace() ;
         }
         if (!gpsEnabled && !networkEnabled) {
-            new AlertDialog.Builder(context)
+/*            new AlertDialog.Builder(context)
                     .setMessage( "Please enable GPS" )
                     .setPositiveButton( "Settings" , new
                             DialogInterface.OnClickListener() {
@@ -37,7 +37,8 @@ public class Utility {
                                 }
                             })
                     .setNegativeButton( "Cancel" , null )
-                    .show() ;
+                    .show() ;*/
+            Toast.makeText(context.getApplicationContext(),"Please enable your GPS connection.",Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

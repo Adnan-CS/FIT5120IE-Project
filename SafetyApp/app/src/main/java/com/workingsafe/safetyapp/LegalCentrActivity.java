@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -17,7 +16,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,76 +29,38 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CounselingActivity extends AppCompatActivity {
-    Location currentLocation;
-    private FusedLocationProviderClient fusedLocationProviderClient;
-    private static final int REQUEST_CODE = 101;
-    private String TYPE_DATA = null;
+public class LegalCentrActivity extends AppCompatActivity {
 
-    private SupportMapFragment supportMapFragment;
+/*    private SupportMapFragment supportMapFragment;
     private FusedLocationProviderClient client;
     private ArrayList<MarkerOptions> markerOptionsArrayList;
     private RestApi restApi;
-    private GoogleMap myMap;
+    private GoogleMap myMap;*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_counseling);
-        TYPE_DATA = getIntent().getStringExtra("TYPE");
+        setContentView(R.layout.activity_legal_centr);
     }
-
-/*    private void fetchLastLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(CounselingActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
-            return;
-        }
-        Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(final Location location) {
-                if(location!=null){
-                    currentLocation = location;
-                    SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.counselling_map);
-                    supportMapFragment.getMapAsync(CounselingActivity.this);
-
-
-
-                }
-            }
-        });
-    }*/
-
-    @Override
+   /* @Override
     protected void onResume() {
         super.onResume();
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         restApi = new RestApi();
         markerOptionsArrayList = null;
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.counselling_map);
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.legalCentr_map);
         //Initialize fused location
         client = LocationServices.getFusedLocationProviderClient(this);
         //Asking for Permission checking
-        if (ActivityCompat.checkSelfPermission(CounselingActivity.this,
+        if (ActivityCompat.checkSelfPermission(LegalCentrActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //When the permission is granted
             getUserCurrentLocation();
         }
         else{
-            ActivityCompat.requestPermissions(CounselingActivity.this,
+            ActivityCompat.requestPermissions(LegalCentrActivity.this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
         }
     }
-
-/*    @Override
-    protected void onStop() {
-        super.onStop();
-        restApi = null;
-        markerOptionsArrayList = null;
-        supportMapFragment = null;
-        client = null;
-    }*/
-
     private void getUserCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -122,61 +82,36 @@ public class CounselingActivity extends AppCompatActivity {
                         public void onMapReady(GoogleMap googleMap) {
                             LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
 
+                            //LatLng latLng1 = new LatLng(-37.8859,145.0848);
+                            //MarkerOptions markerOptions1 = new MarkerOptions().position(latLng1).title("This is new location");
+
                             //Creating my current location marker option
                             MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("This is my location");
-                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).snippet("Hello");
                             //Need to zoom towards my current location
+                            //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
                             //Add the marker (markerOptions) on the map
                             googleMap.addMarker(markerOptions);
+                            //googleMap.addMarker(markerOptions1);
                             myMap = googleMap;
+                            FetchLegalCentrTask fetchLegalCentrTask = new FetchLegalCentrTask();
                             CurrentLocation currentLocation = new CurrentLocation(BigDecimal.valueOf(location.getLatitude()),BigDecimal.valueOf(location.getLongitude()));
-                            if(TYPE_DATA.equals("COUNSELLING")){
-                                FetchCounsellingTask fetchCounsellingTask = new FetchCounsellingTask();
-                                fetchCounsellingTask.execute(currentLocation);
-                            }else{
-                                FetchLegalCentrTask fetchLegalCentrTask = new FetchLegalCentrTask();
-                                fetchLegalCentrTask.execute(currentLocation);
-                            }
+                            fetchLegalCentrTask.execute(currentLocation);
                         }
                     });
                 }
             }
         });
     }
-
-    @Override
+*//*    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==REQUEST_CODE){
+        if(requestCode==44){
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 //Get user current location when permission is granted
                 getUserCurrentLocation();
             }
         }
-    }
-
-
-    private class FetchCounsellingTask extends AsyncTask<CurrentLocation, Void, List<Counsellingcenters>>
-    {
-        @Override
-        protected List<Counsellingcenters> doInBackground(CurrentLocation... params)
-        {
-            return restApi.getNearestCounselling(params[0]);
-        }
-        @Override
-        protected void onPostExecute(List<Counsellingcenters> counsellingcenters)
-        {
-            markerOptionsArrayList = new ArrayList<>();
-            for(Counsellingcenters counsellingcenter: counsellingcenters){
-                LatLng latLng = new LatLng(counsellingcenter.getLatitude().doubleValue(),counsellingcenter.getLongitude().doubleValue());
-                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(counsellingcenter.getCounselling_name());
-                String snippetData = "Address "+ counsellingcenter.getAddress() + "\n" + "Contact: "+counsellingcenter.getContact_details();
-                newMarker.snippet(snippetData);
-                myMap.addMarker(newMarker);
-                markerOptionsArrayList.add(newMarker);
-            }
-        }
-    }
+    }*//*
     private class FetchLegalCentrTask extends AsyncTask<CurrentLocation, Void, List<Legalcenters>>
     {
         @Override
@@ -195,11 +130,5 @@ public class CounselingActivity extends AppCompatActivity {
                 markerOptionsArrayList.add(newMarker);
             }
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
+    }*/
 }
