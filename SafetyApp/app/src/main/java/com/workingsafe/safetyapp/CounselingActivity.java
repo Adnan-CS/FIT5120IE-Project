@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -19,6 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -42,34 +45,14 @@ public class CounselingActivity extends AppCompatActivity {
     private ArrayList<MarkerOptions> markerOptionsArrayList;
     private RestApi restApi;
     private GoogleMap myMap;
+    private ArrayList<Counsellingcenters> counsellingArrayList;
+    private ArrayList<Legalcenters> legalcentersArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counseling);
         TYPE_DATA = getIntent().getStringExtra("TYPE");
     }
-
-/*    private void fetchLastLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(CounselingActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
-            return;
-        }
-        Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(final Location location) {
-                if(location!=null){
-                    currentLocation = location;
-                    SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.counselling_map);
-                    supportMapFragment.getMapAsync(CounselingActivity.this);
-
-
-
-                }
-            }
-        });
-    }*/
 
     @Override
     protected void onResume() {
@@ -91,15 +74,6 @@ public class CounselingActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
         }
     }
-
-/*    @Override
-    protected void onStop() {
-        super.onStop();
-        restApi = null;
-        markerOptionsArrayList = null;
-        supportMapFragment = null;
-        client = null;
-    }*/
 
     private void getUserCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -124,7 +98,7 @@ public class CounselingActivity extends AppCompatActivity {
 
                             //Creating my current location marker option
                             MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("This is my location");
-                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).snippet("Hello");
+                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                             //Need to zoom towards my current location
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
                             //Add the marker (markerOptions) on the map
@@ -167,14 +141,36 @@ public class CounselingActivity extends AppCompatActivity {
         protected void onPostExecute(List<Counsellingcenters> counsellingcenters)
         {
             markerOptionsArrayList = new ArrayList<>();
+            counsellingArrayList = new ArrayList<>();
+            int i = 0;
             for(Counsellingcenters counsellingcenter: counsellingcenters){
                 LatLng latLng = new LatLng(counsellingcenter.getLatitude().doubleValue(),counsellingcenter.getLongitude().doubleValue());
-                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(counsellingcenter.getCounselling_name());
-                String snippetData = "Address "+ counsellingcenter.getAddress() + "\n" + "Contact: "+counsellingcenter.getContact_details();
-                newMarker.snippet(snippetData);
+                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(String.valueOf(i));
+                counsellingArrayList.add(counsellingcenter);
                 myMap.addMarker(newMarker);
                 markerOptionsArrayList.add(newMarker);
+                i++;
             }
+            myMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    Counsellingcenters getCounselling = null;
+                    try{
+                        getCounselling = counsellingArrayList.get(Integer.valueOf(marker.getTitle()));
+                    }catch (Exception e){
+                        return false;
+                    }
+                    new AlertDialog.Builder(CounselingActivity.this)
+                            .setTitle(getCounselling.getCounselling_name())
+                            .setMessage("Address: " + getCounselling.getAddress() + "\n\n" + "Contact: "+getCounselling.getContact_details()+"\n"+"Suburb/Town: "+getCounselling.getSuburbortown())
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                            .show();
+                    return false;
+                }
+            });
         }
     }
     private class FetchLegalCentrTask extends AsyncTask<CurrentLocation, Void, List<Legalcenters>>
@@ -188,18 +184,43 @@ public class CounselingActivity extends AppCompatActivity {
         protected void onPostExecute(List<Legalcenters> legalcentersList)
         {
             markerOptionsArrayList = new ArrayList<>();
+            legalcentersArrayList = new ArrayList<>();
+            int i = 0;
             for(Legalcenters legalcenters: legalcentersList){
                 LatLng latLng = new LatLng(legalcenters.getLatitude().doubleValue(),legalcenters.getLongitude().doubleValue());
-                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(legalcenters.getAddress());
+                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(String.valueOf(i));
                 myMap.addMarker(newMarker);
                 markerOptionsArrayList.add(newMarker);
+                legalcentersArrayList.add(legalcenters);
+                i++;
             }
+            myMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    Legalcenters getLegalCentre =null;
+                    try{
+                        getLegalCentre = legalcentersArrayList.get(Integer.valueOf(marker.getTitle()));
+                    }catch (Exception e){
+                        return false;
+                    }
+                    new AlertDialog.Builder(CounselingActivity.this)
+                            .setTitle(getLegalCentre.getCenter_name())
+                            .setMessage("Address: " + getLegalCentre.getAddress() + "\n\n" + "Contact: "+getLegalCentre.getContact_details()+"\n"+"Suburb/Town: "+getLegalCentre.getSuburbortown())
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                            .show();
+                    return false;
+                }
+            });
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        legalcentersArrayList = null;
+        counsellingArrayList = null;
     }
 }
