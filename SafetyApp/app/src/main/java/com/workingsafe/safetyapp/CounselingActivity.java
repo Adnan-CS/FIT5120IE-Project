@@ -145,7 +145,7 @@ public class CounselingActivity extends AppCompatActivity {
             int i = 0;
             for(Counsellingcenters counsellingcenter: counsellingcenters){
                 LatLng latLng = new LatLng(counsellingcenter.getLatitude().doubleValue(),counsellingcenter.getLongitude().doubleValue());
-                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(String.valueOf(i));
+                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(String.valueOf(i)).snippet(counsellingcenter.getCounselling_name());
                 counsellingArrayList.add(counsellingcenter);
                 myMap.addMarker(newMarker);
                 markerOptionsArrayList.add(newMarker);
@@ -188,7 +188,7 @@ public class CounselingActivity extends AppCompatActivity {
             int i = 0;
             for(Legalcenters legalcenters: legalcentersList){
                 LatLng latLng = new LatLng(legalcenters.getLatitude().doubleValue(),legalcenters.getLongitude().doubleValue());
-                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(String.valueOf(i));
+                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(String.valueOf(i)).snippet(legalcenters.getCenter_name());
                 myMap.addMarker(newMarker);
                 markerOptionsArrayList.add(newMarker);
                 legalcentersArrayList.add(legalcenters);

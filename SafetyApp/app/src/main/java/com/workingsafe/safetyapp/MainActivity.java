@@ -38,6 +38,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     CardView counselingCard;
     CardView legalCentrCardView;
+    CardView testimonialCardView;
 
     private Intent serviceIntent;
     @Override
@@ -46,7 +47,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);//counselingMap
         counselingCard = findViewById(R.id.counselingMap);
         legalCentrCardView = findViewById(R.id.legalCentCard);
-
+        testimonialCardView = findViewById(R.id.testimonialCard);
+        testimonialCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,TestimonialActivity.class);
+                startActivity(intent);
+            }
+        });
         counselingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

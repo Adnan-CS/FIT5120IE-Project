@@ -7,51 +7,56 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:orientation="vertical">
         <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:rowCount="3"
             android:columnCount="2"
             android:layout_margin="5dp"
             android:alignmentMode="alignMargins"
             android:layout_gravity="center_horizontal"
+
+
             android:columnOrderPreserved="false">
             <androidx.cardview.widget.CardView
-            android:layout_width="170dp"
-            android:layout_height="200dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="5dp"
-            app:cardBackgroundColor="@color/gray"
-            android:layout_margin="10dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                >
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/idea"
-                    android:layout_marginTop="18dp"/>
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp"
+                android:id="@+id/testimonialCard"
+                app:cardBackgroundColor="@color/gray"
+                android:layout_margin="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/idea"
+                        android:layout_marginTop="18dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Suggestion"
-                    android:fontFamily="@font/googlesans_bold"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Testimonials"
+                        android:fontFamily="@font/googlesans_bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="20dp"/>
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="200dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp"
@@ -61,6 +66,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
                     android:orientation="vertical"
                     android:gravity="center"
                     >
@@ -73,7 +79,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Councilor Map"
+                        android:text="Counsellor Map"
                         android:fontFamily="@font/googlesans_bold"
                         android:textSize="18sp"
                         android:textColor="@color/white"
@@ -82,7 +88,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="200dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp"
@@ -113,7 +119,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="200dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp"
@@ -143,7 +149,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="200dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp"
@@ -173,7 +179,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="200dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="5dp"
@@ -203,7 +209,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </GridLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </ScrollView>
