@@ -19,6 +19,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     CardView counselingCard;
     CardView legalCentrCardView;
     CardView testimonialCardView;
+    CardView medicalCard;
+    CardView gameCard;
+    CardView settingsCard;
 
     private Intent serviceIntent;
     @Override
@@ -48,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
         counselingCard = findViewById(R.id.counselingMap);
         legalCentrCardView = findViewById(R.id.legalCentCard);
         testimonialCardView = findViewById(R.id.testimonialCard);
+        medicalCard = findViewById(R.id.medicalSupport);
+        gameCard = findViewById(R.id.gameSupport);
+        settingsCard = findViewById(R.id.settingsId);
+
+
         testimonialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +83,28 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("TYPE","LEGAL");
                     startActivity(intent);
                 }
+
+            }
+        });
+
+        //Not developed yet
+        medicalCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"It has not been developed yet.",Toast.LENGTH_LONG).show();
+            }
+        });
+        gameCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"It has not been developed yet.",Toast.LENGTH_LONG).show();
+
+            }
+        });
+        settingsCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"It has not been developed yet.",Toast.LENGTH_LONG).show();
 
             }
         });

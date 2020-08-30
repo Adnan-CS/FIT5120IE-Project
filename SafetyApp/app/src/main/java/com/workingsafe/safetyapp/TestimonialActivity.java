@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,8 @@ public class TestimonialActivity extends AppCompatActivity {
         initializeArray();
         testimonialAdapter = new TestimonialAdapter(TestimonialActivity.this,testimonialList,urlList);
         recyclerView.setAdapter(testimonialAdapter);
+        Toast.makeText(TestimonialActivity.this,"To view details please click list item",Toast.LENGTH_LONG).show();
+
     }
     private void initializeArray(){
         testimonialList.add("How to end the sexual harassment at work");

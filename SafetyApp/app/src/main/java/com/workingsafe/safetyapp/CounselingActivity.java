@@ -11,7 +11,9 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -171,6 +173,12 @@ public class CounselingActivity extends AppCompatActivity {
                     return false;
                 }
             });
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(CounselingActivity.this, "Please Pinch-to-zoom", Toast.LENGTH_SHORT).show();
+                }
+            }, 4000);
         }
     }
     private class FetchLegalCentrTask extends AsyncTask<CurrentLocation, Void, List<Legalcenters>>
@@ -214,6 +222,12 @@ public class CounselingActivity extends AppCompatActivity {
                     return false;
                 }
             });
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(CounselingActivity.this, "Please Pinch-to-zoom", Toast.LENGTH_SHORT).show();
+                }
+            }, 4000);
         }
     }
 
