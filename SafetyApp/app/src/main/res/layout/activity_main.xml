@@ -13,28 +13,28 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
         <GridLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:rowCount="3"
             android:columnCount="2"
             android:layout_margin="5dp"
             android:alignmentMode="alignMargins"
             android:layout_gravity="center_horizontal"
-
-
             android:columnOrderPreserved="false">
             <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
+                app:cardElevation="6dp"
+                android:layout_margin="12dp"
                 android:id="@+id/testimonialCard"
-                app:cardBackgroundColor="@color/gray"
-                android:layout_margin="10dp">
+                app:cardBackgroundColor="@color/gray">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
+                    android:padding="16dp"
                     android:orientation="vertical"
                     android:gravity="center"
                     >
@@ -49,24 +49,27 @@
                         android:layout_height="wrap_content"
                         android:text="Testimonials"
                         android:fontFamily="@font/googlesans_bold"
-                        android:textSize="18sp"
+                        android:textSize="12sp"
                         android:textColor="@color/white"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_marginTop="12dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
+                app:cardElevation="6dp"
+                android:layout_margin="12dp"
                 android:id="@+id/counselingMap"
-                app:cardBackgroundColor="@color/gray"
-                android:layout_margin="10dp">
+                app:cardBackgroundColor="@color/gray">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
+                    android:padding="16dp"
                     android:orientation="vertical"
                     android:gravity="center"
                     >
@@ -79,25 +82,29 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Counsellor Map"
+                        android:text="Search Councillor"
                         android:fontFamily="@font/googlesans_bold"
-                        android:textSize="18sp"
+                        android:textSize="12sp"
                         android:textColor="@color/white"
-                        android:layout_marginTop="20dp"/>
-
+                        android:layout_marginTop="12dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+
             <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
+                app:cardElevation="6dp"
+                android:layout_margin="12dp"
                 android:id="@+id/legalCentCard"
-                app:cardBackgroundColor="@color/gray"
-                android:layout_margin="10dp">
+                app:cardBackgroundColor="@color/gray">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="16dp"
                     android:orientation="vertical"
                     android:gravity="center"
                     >
@@ -110,105 +117,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Legal Center"
+                        android:text="Search LegalCentres"
                         android:fontFamily="@font/googlesans_bold"
-                        android:textSize="18sp"
+                        android:textSize="12sp"
                         android:textColor="@color/white"
-                        android:layout_marginTop="20dp"/>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
-                android:id="@+id/medicalSupport"
-                app:cardBackgroundColor="@color/gray"
-                android:layout_margin="10dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    >
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/medical"
-                        android:layout_marginTop="18dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Medical Support"
-                        android:fontFamily="@font/googlesans_bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="20dp"/>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
-                android:id="@+id/gameSupport"
-                app:cardBackgroundColor="@color/gray"
-                android:layout_margin="10dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    >
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/game"
-                        android:layout_marginTop="18dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Play Game"
-                        android:fontFamily="@font/googlesans_bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="20dp"/>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="5dp"
-                android:id="@+id/settingsId"
-                app:cardBackgroundColor="@color/gray"
-                android:layout_margin="10dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    >
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/settings"
-                        android:layout_marginTop="18dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Settings"
-                        android:fontFamily="@font/googlesans_bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="20dp"/>
-
+                        android:layout_marginTop="12dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </GridLayout>

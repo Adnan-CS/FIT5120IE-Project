@@ -1,48 +1,20 @@
 package com.workingsafe.safetyapp;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
+
 import android.widget.Toast;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.workingsafe.safetyapp.model.Counsellingcenters;
-import com.workingsafe.safetyapp.model.CurrentLocation;
-import com.workingsafe.safetyapp.model.Legalcenters;
-import com.workingsafe.safetyapp.restapi.RestApi;
-import com.workingsafe.safetyapp.service.MyLocationService;
 import com.workingsafe.safetyapp.utility.Utility;
-
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     CardView counselingCard;
     CardView legalCentrCardView;
     CardView testimonialCardView;
-    CardView medicalCard;
-    CardView gameCard;
-    CardView settingsCard;
+
 
     private Intent serviceIntent;
     @Override
@@ -52,9 +24,6 @@ public class MainActivity extends AppCompatActivity {
         counselingCard = findViewById(R.id.counselingMap);
         legalCentrCardView = findViewById(R.id.legalCentCard);
         testimonialCardView = findViewById(R.id.testimonialCard);
-        medicalCard = findViewById(R.id.medicalSupport);
-        gameCard = findViewById(R.id.gameSupport);
-        settingsCard = findViewById(R.id.settingsId);
 
 
         testimonialCardView.setOnClickListener(new View.OnClickListener() {
@@ -86,35 +55,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        //Not developed yet
-        medicalCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"It has not been developed yet.",Toast.LENGTH_LONG).show();
-            }
-        });
-        gameCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"It has not been developed yet.",Toast.LENGTH_LONG).show();
-
-            }
-        });
-        settingsCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"It has not been developed yet.",Toast.LENGTH_LONG).show();
-
-            }
-        });
     }
-
-
-
-/*    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stopService(serviceIntent);
-    }*/
 }
