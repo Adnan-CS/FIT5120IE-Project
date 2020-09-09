@@ -99,13 +99,15 @@ public class CounselingActivity extends AppCompatActivity {
                             LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
 
                             //Creating my current location marker option
-                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("This is my location");
+                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("My location");
                             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                             //Need to zoom towards my current location
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
                             //Add the marker (markerOptions) on the map
                             googleMap.addMarker(markerOptions);
                             myMap = googleMap;
+                            //Added UI Current location purpose icon
+                            myMap.setMyLocationEnabled(true);
                             CurrentLocation currentLocation = new CurrentLocation(BigDecimal.valueOf(location.getLatitude()),BigDecimal.valueOf(location.getLongitude()));
                             if(TYPE_DATA.equals("COUNSELLING")){
                                 FetchCounsellingTask fetchCounsellingTask = new FetchCounsellingTask();
@@ -178,7 +180,7 @@ public class CounselingActivity extends AppCompatActivity {
                 public void run() {
                     Toast.makeText(CounselingActivity.this, "Please Pinch-to-zoom", Toast.LENGTH_SHORT).show();
                 }
-            }, 4000);
+            }, 3000);
         }
     }
     private class FetchLegalCentrTask extends AsyncTask<CurrentLocation, Void, List<Legalcenters>>

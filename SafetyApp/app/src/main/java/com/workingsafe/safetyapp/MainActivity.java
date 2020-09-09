@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     CardView counselingCard;
     CardView legalCentrCardView;
     CardView testimonialCardView;
+    CardView quizzesCardView;
 
 
     private Intent serviceIntent;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         counselingCard = findViewById(R.id.counselingMap);
         legalCentrCardView = findViewById(R.id.legalCentCard);
         testimonialCardView = findViewById(R.id.testimonialCard);
-
+        quizzesCardView = findViewById(R.id.quizzesCardVw);
 
         testimonialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+            }
+        });
+        quizzesCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,QuizCtgrsActivity.class);
+                startActivity(intent);
             }
         });
     }

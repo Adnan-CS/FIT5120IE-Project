@@ -34,22 +34,22 @@ public class TestimonialActivity extends AppCompatActivity {
         testimonialList.add("How to end the sexual harassment at work");
         testimonialList.add("The power of us");
         testimonialList.add("Advice for people");
-        testimonialList.add("1993 Sexual Harassment Commercial");
-        testimonialList.add("Motivational speech for sexual assualt survivor");
+        //testimonialList.add("1993 Sexual Harassment Commercial");
+        //testimonialList.add("Motivational speech for sexual assualt survivor");
         testimonialList.add("Powerful poem on sexual abuse");
         testimonialList.add("Power of speaking out");
         testimonialList.add("Victoria to review law preventing sexual assault survivors speaking publicly without court order");
         testimonialList.add("Survivor stories -Samentha’s Story");
         testimonialList.add("Survivor stories -Lucy’s Story");
         testimonialList.add("My Story: I Was Sexually Harassed at an Informational Interview");
-        testimonialList.add("Lady Gaga's survivor song");
+        //testimonialList.add("Lady Gaga's survivor song");
 
         urlList.add("https://www.ted.com/talks/gretchen_carlson_how_we_can_end_sexual_harassment_at_work?language=en");
         urlList.add("https://www.ted.com/talks/marianne_cooper_the_power_of_us_how_we_stop_sexual_harassment?language=en");
         urlList.add("https://www.fastcompany.com/90389016/i-was-sexually-harassed-at-work-heres-my-advice-for-interns");
-        urlList.add("https://www.youtube.com/watch?v=pKhbau8DJj0");
+        //urlList.add("https://www.youtube.com/watch?v=pKhbau8DJj0");
 
-        urlList.add("https://www.youtube.com/watch?v=bClP_x6uDV4");
+        //urlList.add("https://www.youtube.com/watch?v=bClP_x6uDV4");
         urlList.add("https://www.billboard.com/articles/columns/pop/8095257/halsey-womens-march-speech-poem-a-story-like-mine-video");
         urlList.add("https://www.theguardian.com/commentisfree/2019/sep/24/when-sexual-assault-survivors-speak-out-they-help-change-the-culture-that-enables-it");
         urlList.add("https://www.theguardian.com/australia-news/2020/aug/26/victoria-to-review-law-preventing-sexual-assault-survivors-speaking-publicly-without-court-order");
@@ -57,6 +57,6 @@ public class TestimonialActivity extends AppCompatActivity {
         urlList.add("https://www.rainn.org/survivor-stories/samentha");
         urlList.add("https://www.rainn.org/survivor-stories/lucy");
         urlList.add("https://www.themuse.com/advice/my-story-i-was-sexually-harassed-at-an-informational-interview");
-        urlList.add("https://www.youtube.com/watch?v=ZmWBrN7QV6Y");
+        //urlList.add("https://www.youtube.com/watch?v=ZmWBrN7QV6Y");
     }
 }

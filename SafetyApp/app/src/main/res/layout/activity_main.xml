@@ -42,16 +42,17 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/idea"
-                        android:layout_marginTop="18dp"/>
+                        android:layout_marginTop="14dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Testimonials"
+                        android:textAlignment="center"
+                        android:text="Survivor\nExperiences"
                         android:fontFamily="@font/googlesans_bold"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="@color/white"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -77,16 +78,17 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/counmap"
-                        android:layout_marginTop="18dp"/>
+                        android:layout_marginTop="14dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Search Councillor"
+                        android:textAlignment="center"
+                        android:text="Search\nCouncillor\nCentres"
                         android:fontFamily="@font/googlesans_bold"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="@color/white"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -112,16 +114,52 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/legalpin"
-                        android:layout_marginTop="18dp"/>
+                        android:layout_marginTop="14dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Search LegalCentres"
+                        android:textAlignment="center"
+                        android:text="Search\nLegal\nCentres"
                         android:fontFamily="@font/googlesans_bold"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="@color/white"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginTop="10dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                android:layout_margin="12dp"
+                android:id="@+id/quizzesCardVw"
+                app:cardBackgroundColor="@color/gray">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/legalpin"
+                        android:layout_marginTop="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Quizzes"
+                        android:fontFamily="@font/googlesans_bold"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </GridLayout>
