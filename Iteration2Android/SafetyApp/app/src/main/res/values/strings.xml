@@ -7,4 +7,14 @@
     <string name="user_location_permission_explanation">Permission Error</string>
     <string name="user_location_permission_not_granted">Permission is not given</string>
     <string name="navigationbtn">Navigation Button</string>
+
+    <string name="question">Question</string>
+    <string name="play_again">Play again</string>
+    <string name="time">15</string>
+    <string name="correct">Correct</string>
+    <string name="wrongans">Opps the ans was wrong</string>
+    <string name="timeup">Time Up</string>
+    <string name="play_game">Play Game</string>
+    <string name="quit">Quit</string>
+    <string name="cancel">✖</string>
 </resources>

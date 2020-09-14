@@ -9,6 +9,7 @@ import android.view.View;
 
 import android.widget.Toast;
 import com.workingsafe.safetyapp.utility.Utility;
+import com.workingsafe.safetyapp.videoquiz.HomeScreen;
 
 public class MainActivity extends AppCompatActivity {
     CardView counselingCard;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         quizzesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,QuizCtgrsActivity.class);
+                Intent intent = new Intent(MainActivity.this, HomeScreen.class);
                 startActivity(intent);
             }
         });
