@@ -56,6 +56,7 @@ import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 import com.workingsafe.safetyapp.model.Counsellingcenters;
 import com.workingsafe.safetyapp.model.CurrentLocation;
+import com.workingsafe.safetyapp.model.Legalcenters;
 import com.workingsafe.safetyapp.restapi.RestApi;
 
 import java.math.BigDecimal;
@@ -88,6 +89,9 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
     private DirectionsRoute currentRoute;
     private NavigationMapRoute navigationMapRoute;
 
+    private String TYPE_DATA = null;
+    private ArrayList<Legalcenters> legalcentersArrayList;
+
     /*    Location currentLocation;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE = 101;
@@ -98,7 +102,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
 
     private GoogleMap myMap;
 
-    private ArrayList<Legalcenters> legalcentersArrayList;*/
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +114,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         restApi = new RestApi();
-
+        TYPE_DATA = getIntent().getStringExtra("TYPE");
         mapView.getMapAsync(this);
         currentLocationButton = findViewById(R.id.currentLocationBtn);
         currentRoute = null;
@@ -121,7 +125,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                     map.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
                             .target(new LatLng(map.getLocationComponent().getLastKnownLocation().getLatitude(),
                                     map.getLocationComponent().getLastKnownLocation().getLongitude()))
-                            .zoom(16)
+                            .zoom(13)
                             .build()));
                 }
             }
@@ -143,7 +147,6 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                 }
             }
         });
-//        TYPE_DATA = getIntent().getStringExtra("TYPE");
     }
 
     @Override
@@ -235,8 +238,6 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
             markerOptionsArrayList = new ArrayList<>();
             counsellingArrayList = new ArrayList<>();
             List<Feature> symbolLayerIconFeatureList = new ArrayList<>();
-            int i = 0;
-
             for (Counsellingcenters counsellingcenter : counsellingcenters) {
                 Feature feature = Feature.fromGeometry(
                         Point.fromLngLat(counsellingcenter.getLongitude().doubleValue(), counsellingcenter.getLatitude().doubleValue()));
@@ -246,7 +247,6 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                 feature.addStringProperty("suburb",counsellingcenter.getSuburbortown());
                 symbolLayerIconFeatureList.add(feature);
                 counsellingArrayList.add(counsellingcenter);
-                i++;
             }
 
             map.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
@@ -265,27 +265,6 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                             ));
                 }
             });
-
-/*            myMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker) {
-                    Counsellingcenters getCounselling = null;
-                    try{
-                        getCounselling = counsellingArrayList.get(Integer.valueOf(marker.getTitle()));
-                    }catch (Exception e){
-                        return false;
-                    }
-                    new AlertDialog.Builder(CounselingActivity.this)
-                            .setTitle(getCounselling.getCounselling_name())
-                            .setMessage("Address: " + getCounselling.getAddress() + "\n\n" + "Contact: "+getCounselling.getContact_details()+"\n"+"Suburb/Town: "+getCounselling.getSuburbortown())
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            })
-                            .show();
-                    return false;
-                }
-            });*/
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -294,7 +273,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
             }, 3000);
         }
     }
-  /*  private class FetchLegalCentrTask extends AsyncTask<CurrentLocation, Void, List<Legalcenters>>
+    private class FetchLegalCentrTask extends AsyncTask<CurrentLocation, Void, List<Legalcenters>>
     {
         @Override
         protected List<Legalcenters> doInBackground(CurrentLocation... params)
@@ -304,35 +283,30 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
         @Override
         protected void onPostExecute(List<Legalcenters> legalcentersList)
         {
-            markerOptionsArrayList = new ArrayList<>();
-            legalcentersArrayList = new ArrayList<>();
-            int i = 0;
+            List<Feature> symbolLayerIconFeatureList = new ArrayList<>();
             for(Legalcenters legalcenters: legalcentersList){
-                LatLng latLng = new LatLng(legalcenters.getLatitude().doubleValue(),legalcenters.getLongitude().doubleValue());
-                MarkerOptions newMarker = new MarkerOptions().position(latLng).title(String.valueOf(i)).snippet(legalcenters.getCenter_name());
-                myMap.addMarker(newMarker);
-                markerOptionsArrayList.add(newMarker);
-                legalcentersArrayList.add(legalcenters);
-                i++;
+                Feature feature = Feature.fromGeometry(
+                        Point.fromLngLat(legalcenters.getLongitude().doubleValue(), legalcenters.getLatitude().doubleValue()));
+                feature.addStringProperty("title",legalcenters.getCenter_name());
+                feature.addStringProperty("address",legalcenters.getAddress());
+                feature.addStringProperty("contact",legalcenters.getContact_details());
+                feature.addStringProperty("suburb",legalcenters.getSuburbortown());
+                symbolLayerIconFeatureList.add(feature);
             }
-            myMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            map.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                 @Override
-                public boolean onMarkerClick(Marker marker) {
-                    Legalcenters getLegalCentre =null;
-                    try{
-                        getLegalCentre = legalcentersArrayList.get(Integer.valueOf(marker.getTitle()));
-                    }catch (Exception e){
-                        return false;
-                    }
-                    new AlertDialog.Builder(CounselingActivity.this)
-                            .setTitle(getLegalCentre.getCenter_name())
-                            .setMessage("Address: " + getLegalCentre.getAddress() + "\n\n" + "Contact: "+getLegalCentre.getContact_details()+"\n"+"Suburb/Town: "+getLegalCentre.getSuburbortown())
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            })
-                            .show();
-                    return false;
+                public void onStyleLoaded(@NonNull Style style) {
+
+                    style.addImage(ICON_ID, BitmapFactory.decodeResource(
+                            CounselingActivity.this.getResources(), R.drawable.mapbox_marker_icon_default));
+                    style.addSource(new GeoJsonSource(SOURCE_ID,
+                            FeatureCollection.fromFeatures(symbolLayerIconFeatureList)));
+                    style.addLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
+                            .withProperties(
+                                    iconImage(ICON_ID),
+                                    iconAllowOverlap(true),
+                                    iconIgnorePlacement(true)
+                            ));
                 }
             });
             new Handler().postDelayed(new Runnable() {
@@ -340,9 +314,9 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                 public void run() {
                     Toast.makeText(CounselingActivity.this, "Please Pinch-to-zoom", Toast.LENGTH_SHORT).show();
                 }
-            }, 4000);
+            }, 3000);
         }
-    }*/
+    }
 
 
     @Override
@@ -409,8 +383,13 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                     BigDecimal.valueOf(map.getLocationComponent().getLastKnownLocation().getLatitude()));
             originPoint = Point.fromLngLat(map.getLocationComponent().getLastKnownLocation().getLongitude(),map.getLocationComponent().getLastKnownLocation().getLatitude());
 
-            FetchCounsellingTask fetchCounsellingTask = new FetchCounsellingTask();
-            fetchCounsellingTask.execute(currentLocation);
+            if(TYPE_DATA.equals("COUNSELLING")){
+                FetchCounsellingTask fetchCounsellingTask = new FetchCounsellingTask();
+                fetchCounsellingTask.execute(currentLocation);
+            }else{
+                FetchLegalCentrTask fetchLegalCentrTask = new FetchLegalCentrTask();
+                fetchLegalCentrTask.execute(currentLocation);
+            }
         } else {
             permissionsManager = new PermissionsManager((PermissionsListener) this);
             permissionsManager.requestLocationPermissions(this);

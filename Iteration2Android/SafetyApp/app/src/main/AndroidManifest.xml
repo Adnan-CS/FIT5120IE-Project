@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/safewomen"
@@ -16,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".QuestionsActivity"></activity>
+        <activity android:name=".QuizScoreActivity"></activity>
+        <activity android:name=".QuestionsActivity" />
         <activity android:name=".SetsActivity" />
         <activity
             android:name=".QuizCtgrsActivity"
@@ -34,12 +36,11 @@
         <activity
             android:name=".CounselingActivity"
             android:parentActivityName=".MainActivity" />
-
-        <activity android:name="com.workingsafe.safetyapp.videoquiz.HomeScreen" />
-        <activity android:name="com.workingsafe.safetyapp.videoquiz.PlayAgain" />
-        <activity android:name="com.workingsafe.safetyapp.videoquiz.GameWon" />
-        <activity android:name="com.workingsafe.safetyapp.videoquiz.Time_Up" />
-        <activity android:name="com.workingsafe.safetyapp.videoquiz.MainGameActivity" />
+        <activity android:name=".videoquiz.HomeScreen" />
+        <activity android:name=".videoquiz.PlayAgain" />
+        <activity android:name=".videoquiz.GameWon" />
+        <activity android:name=".videoquiz.Time_Up" />
+        <activity android:name=".videoquiz.MainGameActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

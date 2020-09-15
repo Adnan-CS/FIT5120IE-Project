@@ -16,6 +16,8 @@ import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.davemorrissey.labs.subscaleview.ImageSource
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import info.hoang8f.widget.FButton
 import java.util.*
 
@@ -26,15 +28,13 @@ class MainGameActivity : AppCompatActivity() {
     var buttonB: FButton? = null
     var buttonC: FButton? = null
     var buttonD: FButton? = null
-    var questionText: TextView? = null
     var triviaQuizText: TextView? = null
     var timeText: TextView? = null
-    var resultText: TextView? = null
     var coinText: TextView? = null
     var videoPath: TextView? = null
     private var triviaQuizHelper: TriviaQuizHelper? = null
     var videoView: VideoView? = null
-    var imageView: ImageView? = null
+    var imageView: SubsamplingScaleImageView? = null
     var currentQuestion: TriviaQuestion? = null
     var list: List<TriviaQuestion>? = null
     var qid = 0
@@ -48,30 +48,26 @@ class MainGameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game_main)
 
         //Initializing variables
-        questionText = findViewById<View>(R.id.triviaQuestion) as TextView
         videoView = findViewById<View>(R.id.myVideoView) as VideoView
-        imageView = findViewById<View>(R.id.imageView) as ImageView
+        imageView = findViewById<View>(R.id.imageView) as SubsamplingScaleImageView
         buttonA = findViewById<View>(R.id.buttonA) as FButton
         buttonB = findViewById<View>(R.id.buttonB) as FButton
         buttonC = findViewById<View>(R.id.buttonC) as FButton
         buttonD = findViewById<View>(R.id.buttonD) as FButton
         triviaQuizText = findViewById<View>(R.id.triviaQuizText) as TextView
         timeText = findViewById<View>(R.id.timeText) as TextView
-        resultText = findViewById<View>(R.id.resultText) as TextView
         coinText = findViewById<View>(R.id.coinText) as TextView
 
         //Setting typefaces for textview and buttons - this will give stylish fonts on textview and button etc
         tb = Typeface.createFromAsset(assets, "fonts/TitilliumWeb-Bold.ttf")
         sb = Typeface.createFromAsset(assets, "fonts/shablagooital.ttf")
         triviaQuizText!!.typeface = sb
-        questionText!!.typeface = tb
         //videoPath.setTypeface(sb);
         buttonA!!.typeface = tb
         buttonB!!.typeface = tb
         buttonC!!.typeface = tb
         buttonD!!.typeface = tb
         timeText!!.typeface = tb
-        resultText!!.typeface = sb
         coinText!!.typeface = tb
 
         //Our database helper class
@@ -110,7 +106,7 @@ class MainGameActivity : AppCompatActivity() {
                 if (timeValue == -1) {
 
                     //Since user is out of time setText as time up
-                    resultText!!.text = getString(R.string.timeup)
+                   // resultText!!.text = getString(R.string.timeup)
 
                     //Since user is out of time he won't be able to click any buttons
                     //therefore we will disable all four options buttons using this method
@@ -136,14 +132,14 @@ class MainGameActivity : AppCompatActivity() {
         imageView?.visibility=if (showImage) View.VISIBLE else View.GONE
         videoView?.visibility=if (showImage) View.GONE else View.VISIBLE
         //This method will setText for question, video and options
-        questionText!!.text = currentQuestion!!.question
+        //questionText!!.text = currentQuestion!!.question
         //videoView.setVideoURI(Uri.parse(currentQuestion.getVideo()));
         if (!showImage) {
             val uri = Uri.parse(currentQuestion?.video);
             videoView?.setVideoURI(uri)
             videoView?.start()
         } else {
-            imageView?.setImageResource(currentQuestion!!.image)
+            imageView?.setImage(ImageSource.resource((currentQuestion!!.image)))
         }
 
 //        videoView!!.setOnPreparedListener { mp ->

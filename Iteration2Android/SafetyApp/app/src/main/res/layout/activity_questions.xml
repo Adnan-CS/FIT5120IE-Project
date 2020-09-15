@@ -54,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:textColor="@android:color/black"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
@@ -63,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:textColor="@android:color/black"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
@@ -72,6 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:textColor="@android:color/black"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
@@ -81,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:textColor="@android:color/black"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
@@ -109,12 +113,14 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/next"
+        android:enabled="false"
+        android:alpha="0.7"
         android:background="@drawable/corners_rounded"
         android:backgroundTint="#848484"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/shareBtnId"
+        app:layout_constraintStart_toEndOf="@+id/backBtnId"
         app:layout_constraintTop_toBottomOf="@+id/optionsContainerId" />
 </androidx.constraintlayout.widget.ConstraintLayout>
