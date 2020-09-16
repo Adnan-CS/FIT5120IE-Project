@@ -384,9 +384,11 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
             originPoint = Point.fromLngLat(map.getLocationComponent().getLastKnownLocation().getLongitude(),map.getLocationComponent().getLastKnownLocation().getLatitude());
 
             if(TYPE_DATA.equals("COUNSELLING")){
+                getSupportActionBar().setTitle("Nearby Counselling Centres");
                 FetchCounsellingTask fetchCounsellingTask = new FetchCounsellingTask();
                 fetchCounsellingTask.execute(currentLocation);
             }else{
+                getSupportActionBar().setTitle("Nearby Legal Centres");
                 FetchLegalCentrTask fetchLegalCentrTask = new FetchLegalCentrTask();
                 fetchLegalCentrTask.execute(currentLocation);
             }

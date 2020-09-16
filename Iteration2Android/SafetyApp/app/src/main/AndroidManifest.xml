@@ -17,15 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".QuizScoreActivity"></activity>
-        <activity android:name=".QuestionsActivity" />
+        <activity android:name=".InfoActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".QuizScoreActivity" />
+        <activity android:name=".QuestionsActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".SetsActivity" />
         <activity
             android:name=".QuizCtgrsActivity"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".TestimonialActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -35,12 +41,17 @@
 
         <activity
             android:name=".CounselingActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".videoquiz.HomeScreen" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".videoquiz.HomeScreen"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".videoquiz.PlayAgain" />
         <activity android:name=".videoquiz.GameWon" />
         <activity android:name=".videoquiz.Time_Up" />
-        <activity android:name=".videoquiz.MainGameActivity" />
+        <activity android:name=".videoquiz.MainGameActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

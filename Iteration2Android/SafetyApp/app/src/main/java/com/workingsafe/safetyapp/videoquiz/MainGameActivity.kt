@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.view.Window
-import android.widget.ImageView
 import android.widget.MediaController
 import android.widget.TextView
 import android.widget.VideoView
@@ -18,10 +17,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+import com.workingsafe.safetyapp.R
 import info.hoang8f.widget.FButton
 import java.util.*
-
-import com.workingsafe.safetyapp.R
 
 class MainGameActivity : AppCompatActivity() {
     var buttonA: FButton? = null
@@ -46,10 +44,10 @@ class MainGameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_main)
-
+        supportActionBar!!.title = "Types of Harassment-Quiz"
         //Initializing variables
         videoView = findViewById<View>(R.id.myVideoView) as VideoView
-        imageView = findViewById<View>(R.id.imageView) as SubsamplingScaleImageView
+        imageView = findViewById<View>(R.id.imageViewQuizId) as SubsamplingScaleImageView
         buttonA = findViewById<View>(R.id.buttonA) as FButton
         buttonB = findViewById<View>(R.id.buttonB) as FButton
         buttonC = findViewById<View>(R.id.buttonC) as FButton

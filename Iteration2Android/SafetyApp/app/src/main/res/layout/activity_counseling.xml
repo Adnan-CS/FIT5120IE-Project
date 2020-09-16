@@ -15,14 +15,17 @@
         mapbox:mapbox_uiRotateGestures="false">
 
     </com.mapbox.mapboxsdk.maps.MapView>
-
     <Button
         android:id="@+id/startNavigationBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:textColor="@android:color/black"
+        android:background="@drawable/borders_rounded"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#989898"
         android:text="@string/navigationbtn"
         mapbox:layout_constraintBottom_toBottomOf="parent"
         mapbox:layout_constraintEnd_toEndOf="parent"

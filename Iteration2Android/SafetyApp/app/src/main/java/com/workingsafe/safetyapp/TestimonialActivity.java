@@ -27,6 +27,7 @@ public class TestimonialActivity extends AppCompatActivity {
         initializeArray();
         testimonialAdapter = new TestimonialAdapter(TestimonialActivity.this,testimonialList,urlList);
         recyclerView.setAdapter(testimonialAdapter);
+        getSupportActionBar().setTitle("Survivor Experiences");
         Toast.makeText(TestimonialActivity.this,"To view details please click list item",Toast.LENGTH_LONG).show();
 
     }

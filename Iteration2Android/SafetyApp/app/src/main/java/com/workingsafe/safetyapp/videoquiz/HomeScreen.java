@@ -40,6 +40,7 @@ public class HomeScreen extends AppCompatActivity {
                 finish();
             }
         });
+        getSupportActionBar().setTitle("Types of Harassment");
     }
 
     private void initViews() {

@@ -56,7 +56,7 @@ public class QuestionsActivity extends AppCompatActivity {
         isButtonSelected = false;
         previousSelectedOption=null;
         gameOver = false;
-
+        getSupportActionBar().setTitle("User Scenarios");
         scenarioImagesResource = new ArrayList<>();
         scenarioImagesResource.add(new Scenario(R.drawable.primary_1,false,"scenarioOne"));
         scenarioImagesResource.add(new Scenario(R.drawable.primary_2,false,"scenarioOne"));
@@ -290,7 +290,6 @@ public class QuestionsActivity extends AppCompatActivity {
         scenarioImagesResource.add(new Scenario(R.drawable.qfive,false,"scenarioFive"));
         scenarioImagesResource.add(new Scenario(R.drawable.gameover,false,"scenarioFive"));
         scenarioImagesResource.add(new Scenario(R.drawable.info_summary,true,"scenarioFive"));
-        //Log.d("NOWAFRAID","I am Afraid Count "+count+" Ar Size: "+scenarioImagesResource.size());
         gameOver = true;
         questionOneOptions.clear();
     }
@@ -345,7 +344,6 @@ public class QuestionsActivity extends AppCompatActivity {
         scenarioImagesResource.add(new Scenario(R.drawable.qtwoabranch_3,false,"scenarioTwo"));
         scenarioImagesResource.add(new Scenario(R.drawable.qtwoabranch_4,false,"scenarioTwo"));
         scenarioImagesResource.add(new Scenario(R.drawable.question2,true,"scenarioTwo"));
-        Log.d("NOWAFRAID","I am Afraid Count "+count+" Ar Size: "+scenarioImagesResource.size());
         questionOneOptions.clear();
         addLateWorkerOptions();
     }
@@ -376,7 +374,7 @@ public class QuestionsActivity extends AppCompatActivity {
                 changeEnableStatus(true);
                 isButtonSelected = true;
                 previousSelectedOption = questionOneOptions.get(i);
-                Toast.makeText(this,questionOneOptions.get(i),Toast.LENGTH_LONG).show();
+                Toast.makeText(this,questionOneOptions.get(i),Toast.LENGTH_SHORT).show();
                 break;
             }
         }

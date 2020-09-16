@@ -29,6 +29,40 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="6dp"
                 android:layout_margin="12dp"
+                android:id="@+id/infoPage"
+                app:cardBackgroundColor="@color/gray">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/support"
+                        android:layout_marginTop="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Information\nPage"
+                        android:fontFamily="@font/googlesans_bold"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                android:layout_margin="12dp"
                 android:id="@+id/testimonialCard"
                 app:cardBackgroundColor="@color/gray">
                 <LinearLayout
@@ -148,7 +182,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/legalpin"
+                        android:src="@drawable/quiz"
                         android:layout_marginTop="14dp"/>
 
                     <TextView
@@ -156,6 +190,41 @@
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:text="Quizzes"
+                        android:fontFamily="@font/googlesans_bold"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                android:layout_margin="12dp"
+                android:id="@+id/quizzesScenarios"
+                app:cardBackgroundColor="@color/gray">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/behavior"
+                        android:layout_marginTop="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="@string/scenarios"
                         android:fontFamily="@font/googlesans_bold"
                         android:textSize="11sp"
                         android:textColor="@color/white"
