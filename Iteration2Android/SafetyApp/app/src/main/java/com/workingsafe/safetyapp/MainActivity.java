@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         quizzesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainGameActivity.class);
+                Intent intent = new Intent(MainActivity.this, QuizCtgrsActivity.class);
                 startActivity(intent);
             }
         });

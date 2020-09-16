@@ -1,126 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".QuestionsActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="20"
         android:background="@color/colorPrimaryDark"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/questionQId"
+        android:orientation="vertical">
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/scenariosImages"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@drawable/background_category"
-            android:padding="16dp"
-            android:text="TextView"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/noIndicatorID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="5/10"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/optionsContainerId"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
+        android:layout_marginTop="6dp"
+        android:visibility="gone"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonOpt1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:textColor="@android:color/black"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonOpt2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:textColor="@android:color/black"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/buttonOpt3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:textColor="@android:color/black"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/buttonOpt4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:textColor="@android:color/black"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/backBtnId"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/share"
-        android:background="@drawable/corners_rounded"
-        android:backgroundTint="#FA7074"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/nextBtnId"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/optionsContainerId" />
-
-    <Button
-        android:id="@+id/nextBtnId"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/next"
-        android:enabled="false"
-        android:alpha="0.7"
-        android:background="@drawable/corners_rounded"
-        android:backgroundTint="#848484"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/backBtnId"
-        app:layout_constraintTop_toBottomOf="@+id/optionsContainerId" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/nextBtnId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/next"
+            android:alpha="0.7"
+            android:background="@drawable/corners_rounded"
+            android:backgroundTint="#848484"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>
