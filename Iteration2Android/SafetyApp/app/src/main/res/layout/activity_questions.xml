@@ -4,28 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:id="@+id/rootLayoutId"
     tools:context=".QuestionsActivity">
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="20"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="vertical">
-        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-            android:id="@+id/scenariosImages"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
-
     <LinearLayout
         android:id="@+id/optionsContainerId"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
+        android:background="@color/backgroundColor"
         android:visibility="gone"
         android:padding="16dp"
         android:orientation="vertical">
@@ -35,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
@@ -45,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
@@ -55,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
@@ -65,31 +53,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:background="@drawable/borders_rounded"
             android:backgroundTint="#989898"
             android:text="Button" />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginTop="16dp"
+        android:layout_weight="1"
         android:padding="16dp"
-        android:gravity="center"
+        android:gravity="end"
         android:orientation="vertical"
         >
-        <Button
+        <ImageView
             android:id="@+id/nextBtnId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/next"
-            android:alpha="0.7"
-            android:background="@drawable/corners_rounded"
-            android:backgroundTint="#848484"
-            android:textColor="@android:color/white" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/next"/>
     </LinearLayout>
 </LinearLayout>

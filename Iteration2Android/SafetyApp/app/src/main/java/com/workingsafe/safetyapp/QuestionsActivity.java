@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,11 +28,10 @@ import java.util.List;
 
 public class QuestionsActivity extends AppCompatActivity {
     private LinearLayout optionsContainer;
-    private Button nextBtn;
+    private ImageView nextBtn;
     private int count = 0;
     private int position = 0;
     private int score = 0;
-    private SubsamplingScaleImageView scenarioImages;
     private ArrayList<Scenario> scenarioImagesResource;
     private ArrayList<String> questionOneOptions;
     private Button opt1;
@@ -41,6 +42,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private String previousSelectedOption;
     private boolean gameOver;
     private int noOfOptions = 0;
+    private LinearLayout rootLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class QuestionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_questions);
         optionsContainer = findViewById(R.id.optionsContainerId);
         nextBtn = findViewById(R.id.nextBtnId);
-        scenarioImages = findViewById(R.id.scenariosImages);
+        rootLayout = findViewById(R.id.rootLayoutId);
         opt1 = findViewById(R.id.buttonOpt1);
         opt2 = findViewById(R.id.buttonOpt2);
         opt3 = findViewById(R.id.buttonOpt3);
@@ -57,6 +59,9 @@ public class QuestionsActivity extends AppCompatActivity {
         previousSelectedOption=null;
         gameOver = false;
         getSupportActionBar().setTitle("User Scenarios");
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         scenarioImagesResource = new ArrayList<>();
         scenarioImagesResource.add(new Scenario(R.drawable.primary_1,false,"scenarioOne"));
         scenarioImagesResource.add(new Scenario(R.drawable.primary_2,false,"scenarioOne"));
@@ -74,7 +79,8 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
         initializeOptionOne(4);
-        scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
+        //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
+        rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
 
         for(int i=0;i<4;i++){
             optionsContainer.getChildAt(i).setOnClickListener(new View.OnClickListener() {
@@ -169,15 +175,18 @@ public class QuestionsActivity extends AppCompatActivity {
                     feelAngry();
                 }
                 if(!scenarioImagesResource.get(count).isQuestion()){
-                    scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
+                    rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
+                    //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
                 }
                 else if(gameOver && scenarioImagesResource.get(count).isQuestion()){
-                    scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
+                    rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
+                    //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
                     nextBtn.setEnabled(false);
                     gameOverFinishActivity();
                 }
                 else{
-                    scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
+                    rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
+                    //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
                     optionsContainer.setVisibility(View.VISIBLE);
                     changeEnableStatus(false);
                 }

@@ -70,6 +70,7 @@ import retrofit2.Response;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
 
 public class CounselingActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener {
     private MapView mapView;
@@ -125,7 +126,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                     map.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
                             .target(new LatLng(map.getLocationComponent().getLastKnownLocation().getLatitude(),
                                     map.getLocationComponent().getLastKnownLocation().getLongitude()))
-                            .zoom(13)
+                            .zoom(14)
                             .build()));
                 }
             }
@@ -260,8 +261,8 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                     style.addLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
                             .withProperties(
                                     iconImage(ICON_ID),
-                                    iconAllowOverlap(true),
-                                    iconIgnorePlacement(true)
+                                    iconAllowOverlap(false),
+                                    iconOffset(new Float[]{0f,-8f})
                             ));
                 }
             });
