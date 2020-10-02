@@ -63,6 +63,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.hoang8f.widget.FButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -86,7 +87,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
     private ArrayList<Counsellingcenters> counsellingArrayList;
     private MapboxNavigation navigation;
     private Point originPoint;
-    private Button navigationButton;
+    private FButton navigationButton;
     private DirectionsRoute currentRoute;
     private NavigationMapRoute navigationMapRoute;
 
@@ -478,9 +479,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                 .getRoute(new Callback<DirectionsResponse>() {
                     @Override
                     public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
-                        Log.d("MAPFAILURE","Response . "+response);
                         currentRoute = response.body().routes().get(0);
-                        //Log.d("MAPFAILURE","Map navigation Response . "+response.body());
                         if(navigationMapRoute!=null){
                             navigationMapRoute.removeRoute();
                         }else{
@@ -491,8 +490,6 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
 
                     @Override
                     public void onFailure(Call<DirectionsResponse> call, Throwable t) {
-                        //Toast.makeText(CounselingActivity.this,"There is not route wow "+t.getMessage() ,Toast.LENGTH_LONG).show();
-                        Log.d("MAPFAILURE","Map navigation failure. "+t.getMessage());
                     }
                 });
     }

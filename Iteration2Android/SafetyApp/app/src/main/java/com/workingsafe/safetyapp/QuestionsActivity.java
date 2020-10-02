@@ -26,6 +26,8 @@ import com.workingsafe.safetyapp.model.Scenario;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.hoang8f.widget.FButton;
+
 public class QuestionsActivity extends AppCompatActivity {
     private LinearLayout optionsContainer;
     private ImageView nextBtn;
@@ -34,10 +36,10 @@ public class QuestionsActivity extends AppCompatActivity {
     private int score = 0;
     private ArrayList<Scenario> scenarioImagesResource;
     private ArrayList<String> questionOneOptions;
-    private Button opt1;
-    private Button opt2;
-    private Button opt3;
-    private Button opt4;
+    private FButton opt1;
+    private FButton opt2;
+    private FButton opt3;
+    private FButton opt4;
     private boolean isButtonSelected;
     private String previousSelectedOption;
     private boolean gameOver;
@@ -362,7 +364,8 @@ public class QuestionsActivity extends AppCompatActivity {
         scenarioImagesResource.add(new Scenario(R.drawable.qthree_2,false,"scenarioThree"));
         scenarioImagesResource.add(new Scenario(R.drawable.qthree_3,false,"scenarioThree"));
         scenarioImagesResource.add(new Scenario(R.drawable.qthree_4,false,"scenarioThree"));
-        scenarioImagesResource.add(new Scenario(R.drawable.gameover,true,"scenarioThree"));
+        scenarioImagesResource.add(new Scenario(R.drawable.gameover,false,"scenarioThree"));
+        scenarioImagesResource.add(new Scenario(R.drawable.info_summary,true,"scenarioThree"));
         gameOver = true;
         questionOneOptions.clear();
     }

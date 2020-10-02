@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:paddingTop="5sp">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoActivity"
+    android:paddingTop="5sp">
     <RelativeLayout
+        android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/relative"
 
-        tools:context=".InfoActivity">
+        android:background="@color/color2"
+        tools:context=".MainActivity">
+
         <TextView
             android:id="@+id/mainHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Sexual Harassment"
+            android:textColor="#FAF9F9"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,41 +32,47 @@ android:paddingTop="5sp">
 
         <ImageView
             android:id="@+id/I1"
-            android:layout_width="182dp"
-            android:layout_height="170dp"
+            android:layout_width="134dp"
+            android:layout_height="127dp"
             android:layout_below="@+id/mainHeader"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="53dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginRight="18dp"
             android:paddingRight="10sp"
             android:src="@drawable/sexual_harassment" />
 
+
         <TextView
             android:id="@+id/T1"
-            android:layout_width="193dp"
-            android:layout_height="115dp"
+            android:layout_width="184dp"
+            android:layout_height="92dp"
             android:layout_below="@+id/mainHeader"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="42dp"
-            android:text="Unwanted sex-related behaviour, or particular kind of impact on employee" />
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="65dp"
+            android:text="Unwanted sex-related behaviour, or particular kind of impact on employee"
+            android:textAlignment="center"
+            android:textColor="#F3EFEF"
+            android:textSize="12sp"
+            tools:ignore="UnknownId" />
 
         <TextView
             android:id="@+id/types_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/I1"
+            android:layout_centerHorizontal="true"
             android:text="Types of Sexual Harassment"
+            android:textColor="#FBFBFB"
             android:textSize="20sp"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="328dp"
             android:layout_height="253dp"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/types_header"
+            android:layout_centerHorizontal="true"
             app:layout_constraintVertical_bias="0.474"></androidx.viewpager.widget.ViewPager>
 
         <LinearLayout
@@ -72,6 +81,8 @@ android:paddingTop="5sp">
             android:layout_height="wrap_content"
             android:layout_below="@+id/viewpager"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center_horizontal|center_vertical"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="0dp"
@@ -82,8 +93,9 @@ android:paddingTop="5sp">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/slidingdots"
-            android:text="Handle Sexual Harassment"
             android:layout_centerHorizontal="true"
+            android:text="Handle Sexual Harassment"
+            android:textColor="#FDFBFB"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -92,8 +104,8 @@ android:paddingTop="5sp">
             android:layout_width="520dp"
             android:layout_height="329dp"
             android:layout_below="@+id/text1"
-            android:layout_marginTop="9dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp" />
 
     </RelativeLayout>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,44 +18,36 @@
         android:padding="16dp"
         android:orientation="vertical">
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonOpt1"
+            android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textColor="@android:color/white"
-            android:background="@drawable/borders_rounded"
-            android:backgroundTint="#989898"
-            android:text="Button" />
+            fbutton:buttonColor="@color/lightGreen"
+            android:text="Button"  />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonOpt2"
+            android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textColor="@android:color/white"
-            android:background="@drawable/borders_rounded"
-            android:backgroundTint="#989898"
+            fbutton:buttonColor="@color/lightGreen"
             android:text="Button" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonOpt3"
+            android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textColor="@android:color/white"
-            android:background="@drawable/borders_rounded"
-            android:backgroundTint="#989898"
+            fbutton:buttonColor="@color/lightGreen"
             android:text="Button" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonOpt4"
+            android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textColor="@android:color/white"
-            android:background="@drawable/borders_rounded"
-            android:backgroundTint="#989898"
+            fbutton:buttonColor="@color/lightGreen"
             android:text="Button" />
     </LinearLayout>
     <LinearLayout
