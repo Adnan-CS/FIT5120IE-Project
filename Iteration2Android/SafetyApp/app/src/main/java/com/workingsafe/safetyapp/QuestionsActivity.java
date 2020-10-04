@@ -96,105 +96,109 @@ public class QuestionsActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count++;
 
-                if(isButtonSelected && previousSelectedOption.toLowerCase().equals("continue the chat casually")){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    addLateWorkScenario();
-                }else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("decide to report to the hr tomorrow")){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    goingToHR();
-                }else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("You think Eric did it. You are shy and afraid to lose your job, so you decide to hide".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    afraidDecidedToHide();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("continue to endure for your job")){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    followHome();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("hit him hard with the bag")){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    hospitalExpense();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("You screamed in fright and ran to the crowded place".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    hearCryEricFired();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("You share this text message with your friend Amy and ask her for her opinion".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    angryTextMessage();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("You feel that it doesn't matter, and you delete the text message at hand".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    deleteMsgAssaulted();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Resign".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    realizeThenDecide();
-                }//Seek help from a psychologist
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Seek help from a psychologist".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    counsellingHelp();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Refuse to acknowledge your physical condition".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    refuseAcknowledge();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Find a legal agency for help".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    legalAgencyFrHelp();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Ask for help on the safe Women app".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    askForHelpApp();
-                }//End Conversation abruptly and leave
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("End Conversation abruptly and leave".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    endConversation();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Change the topic".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    changeThetopic();
-                }
-                else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Feel angry and question him why he asked it".toLowerCase())){
-                    previousSelectedOption = null;
-                    isButtonSelected = false;
-                    feelAngry();
-                }
-                if(!scenarioImagesResource.get(count).isQuestion()){
-                    rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
-                    //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
-                }
-                else if(gameOver && scenarioImagesResource.get(count).isQuestion()){
-                    rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
-                    //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
-                    nextBtn.setEnabled(false);
-                    gameOverFinishActivity();
-                }
-                else{
-                    rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
-                    //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
-                    optionsContainer.setVisibility(View.VISIBLE);
-                    changeEnableStatus(false);
-                }
-               /* optionsContainer.setVisibility(View.VISIBLE);*/
+                changeBackgroundBtnSelection();
             }
         });
+    }
+    private void changeBackgroundBtnSelection(){
+        count++;
+
+        if(isButtonSelected && previousSelectedOption.toLowerCase().equals("continue the chat casually")){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            addLateWorkScenario();
+        }else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("decide to report to the hr tomorrow")){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            goingToHR();
+        }else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("You think Eric did it. You are shy and afraid to lose your job, so you decide to hide".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            afraidDecidedToHide();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("continue to endure for your job")){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            followHome();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("hit him hard with the bag")){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            hospitalExpense();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("You screamed in fright and ran to the crowded place".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            hearCryEricFired();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("You share this text message with your friend Amy and ask her for her opinion".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            angryTextMessage();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("You feel that it doesn't matter, and you delete the text message at hand".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            deleteMsgAssaulted();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Resign".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            realizeThenDecide();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Seek help from a psychologist".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            counsellingHelp();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Refuse to acknowledge your physical condition".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            refuseAcknowledge();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Find a legal agency for help".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            legalAgencyFrHelp();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Ask for help on the safe Women app".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            askForHelpApp();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("End Conversation abruptly and leave".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            endConversation();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Change the topic".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            changeThetopic();
+        }
+        else if(isButtonSelected && previousSelectedOption.toLowerCase().equals("Feel angry and question him why he asked it".toLowerCase())){
+            previousSelectedOption = null;
+            isButtonSelected = false;
+            feelAngry();
+        }
+        if(!scenarioImagesResource.get(count).isQuestion()){
+            rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
+            //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
+        }
+        else if(gameOver && scenarioImagesResource.get(count).isQuestion()){
+            rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
+            //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
+            changeEnableStatus(false);
+            //nextBtn.setEnabled(false);
+            //gameOverFinishActivity();
+        }
+        else{
+            rootLayout.setBackgroundResource(scenarioImagesResource.get(count).getImageId());
+            //scenarioImages.setImage(ImageSource.resource(scenarioImagesResource.get(count).getImageId()));
+            optionsContainer.setVisibility(View.VISIBLE);
+            changeEnableStatus(false);
+        }
     }
     private void feelAngry(){
         optionsContainer.setVisibility(View.GONE);
@@ -339,14 +343,14 @@ public class QuestionsActivity extends AppCompatActivity {
         initializeOptionOne(3);
         previousSelectedOption = null;
     }
-    private void gameOverFinishActivity(){
+/*    private void gameOverFinishActivity(){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 finish();
             }
         }, 4000);
-    }
+    }*/
     private void addLateWorkScenario(){
         optionsContainer.setVisibility(View.GONE);
         scenarioImagesResource.add(new Scenario(R.drawable.qoneopoutput_1,false,"scenarioTwo"));
@@ -378,7 +382,12 @@ public class QuestionsActivity extends AppCompatActivity {
         previousSelectedOption = null;
     }
     private void changeEnableStatus(boolean status){
-        nextBtn.setEnabled(status);
+        if(!status){
+            nextBtn.setVisibility(View.INVISIBLE);
+            return;
+        }
+        nextBtn.setVisibility(View.VISIBLE);
+        //nextBtn.setEnabled(status);
     }
     private void checkScenarioOne(Button selectedOption){
         for(int i=0;i<4;i++){
@@ -390,6 +399,7 @@ public class QuestionsActivity extends AppCompatActivity {
                 break;
             }
         }
+        changeBackgroundBtnSelection();
 
     }
     private void initializeOptionOne(int noOfOptions){
