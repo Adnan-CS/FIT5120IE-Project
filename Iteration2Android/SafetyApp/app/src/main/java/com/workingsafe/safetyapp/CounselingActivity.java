@@ -38,6 +38,7 @@ import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
 import com.mapbox.mapboxsdk.location.LocationComponentOptions;
@@ -73,14 +74,15 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacem
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
 
-public class CounselingActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener {
+public class CounselingActivity extends AppCompatActivity implements OnMapReadyCallback, PermissionsListener, MapboxMap.OnMapClickListener {
     private MapView mapView;
     private MapboxMap map;
     private PermissionsManager permissionsManager;
     private static final String SOURCE_ID = "SOURCE_ID";
     private static final String ICON_ID = "ICON_ID";
     private static final String LAYER_ID = "LAYER_ID";
-
+    private LatLng locationOne;
+    private LatLng locationTwo;
     private FloatingActionButton currentLocationButton;
     private ArrayList<MarkerOptions> markerOptionsArrayList;
     private RestApi restApi;
@@ -127,7 +129,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                     map.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
                             .target(new LatLng(map.getLocationComponent().getLastKnownLocation().getLatitude(),
                                     map.getLocationComponent().getLastKnownLocation().getLongitude()))
-                            .zoom(14)
+                            //.zoom(13)
                             .build()));
                 }
             }
@@ -171,6 +173,17 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
             ActivityCompat.requestPermissions(CounselingActivity.this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
         }*/
+    }
+
+    @Override
+    public boolean onMapClick(@NonNull LatLng point) {
+        LatLngBounds latLngBounds = new LatLngBounds.Builder()
+                .include(locationOne) // Northeast
+                .include(locationTwo) // Southwest
+                .build();
+
+        map.easeCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 50), 5000);
+        return true;
     }
 
    /* private void getUserCurrentLocation() {
@@ -240,6 +253,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
             markerOptionsArrayList = new ArrayList<>();
             counsellingArrayList = new ArrayList<>();
             List<Feature> symbolLayerIconFeatureList = new ArrayList<>();
+            int count = 0;
             for (Counsellingcenters counsellingcenter : counsellingcenters) {
                 Feature feature = Feature.fromGeometry(
                         Point.fromLngLat(counsellingcenter.getLongitude().doubleValue(), counsellingcenter.getLatitude().doubleValue()));
@@ -249,11 +263,19 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                 feature.addStringProperty("suburb",counsellingcenter.getSuburbortown());
                 symbolLayerIconFeatureList.add(feature);
                 counsellingArrayList.add(counsellingcenter);
+                if(count == 0){
+                    locationOne = new LatLng(counsellingcenter.getLatitude().doubleValue(),counsellingcenter.getLongitude().doubleValue());
+                }
+                else if(count == 7){
+                    locationTwo = new LatLng(counsellingcenter.getLatitude().doubleValue(),counsellingcenter.getLongitude().doubleValue());
+                }
+                count++;
             }
-
             map.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                 @Override
                 public void onStyleLoaded(@NonNull Style style) {
+
+                    map.addOnMapClickListener(CounselingActivity.this);
 
                     style.addImage(ICON_ID, BitmapFactory.decodeResource(
                             CounselingActivity.this.getResources(), R.drawable.mapbox_marker_icon_default));
@@ -262,8 +284,8 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                     style.addLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
                             .withProperties(
                                     iconImage(ICON_ID),
-                                    iconAllowOverlap(false),
-                                    iconOffset(new Float[]{0f,-8f})
+                                    iconAllowOverlap(true),
+                                    iconIgnorePlacement(false)
                             ));
                 }
             });
@@ -286,6 +308,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
         protected void onPostExecute(List<Legalcenters> legalcentersList)
         {
             List<Feature> symbolLayerIconFeatureList = new ArrayList<>();
+            int count = 0;
             for(Legalcenters legalcenters: legalcentersList){
                 Feature feature = Feature.fromGeometry(
                         Point.fromLngLat(legalcenters.getLongitude().doubleValue(), legalcenters.getLatitude().doubleValue()));
@@ -294,11 +317,18 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                 feature.addStringProperty("contact",legalcenters.getContact_details());
                 feature.addStringProperty("suburb",legalcenters.getSuburbortown());
                 symbolLayerIconFeatureList.add(feature);
+                if(count == 0){
+                    locationOne = new LatLng(legalcenters.getLatitude().doubleValue(),legalcenters.getLongitude().doubleValue());
+                }
+                else if(count == 7){
+                    locationTwo = new LatLng(legalcenters.getLatitude().doubleValue(),legalcenters.getLongitude().doubleValue());
+                }
+                count++;
             }
             map.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                 @Override
                 public void onStyleLoaded(@NonNull Style style) {
-
+                    map.addOnMapClickListener(CounselingActivity.this);
                     style.addImage(ICON_ID, BitmapFactory.decodeResource(
                             CounselingActivity.this.getResources(), R.drawable.mapbox_marker_icon_default));
                     style.addSource(new GeoJsonSource(SOURCE_ID,
@@ -307,7 +337,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                             .withProperties(
                                     iconImage(ICON_ID),
                                     iconAllowOverlap(true),
-                                    iconIgnorePlacement(true)
+                                    iconIgnorePlacement(false)
                             ));
                 }
             });
@@ -374,7 +404,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
             locationComponent.setLocationComponentEnabled(true);
 
             // Set the component's camera mode
-            locationComponent.setCameraMode(CameraMode.TRACKING);
+            locationComponent.setCameraMode(CameraMode.TRACKING_COMPASS);
 
             // Set the component's render mode
             locationComponent.setRenderMode(RenderMode.COMPASS);
@@ -382,7 +412,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
             //Fetch async task method
             CurrentLocation currentLocation = new CurrentLocation(
                     BigDecimal.valueOf(map.getLocationComponent().getLastKnownLocation().getLatitude()),
-                    BigDecimal.valueOf(map.getLocationComponent().getLastKnownLocation().getLatitude()));
+                    BigDecimal.valueOf(map.getLocationComponent().getLastKnownLocation().getLongitude()));
             originPoint = Point.fromLngLat(map.getLocationComponent().getLastKnownLocation().getLongitude(),map.getLocationComponent().getLastKnownLocation().getLatitude());
 
             if(TYPE_DATA.equals("COUNSELLING")){
@@ -465,6 +495,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                             .show();
                     Point destination = Point.fromLngLat(point.getLongitude(),point.getLatitude());
                     getRoute(originPoint,destination);
+
                     return true;
                 }
                 return false;

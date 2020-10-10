@@ -13,6 +13,7 @@
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        mapbox:mapbox_cameraZoom="4"
         mapbox:mapbox_uiRotateGestures="false">
 
     </com.mapbox.mapboxsdk.maps.MapView>

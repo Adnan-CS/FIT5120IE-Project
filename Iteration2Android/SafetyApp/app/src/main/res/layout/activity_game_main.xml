@@ -104,7 +104,7 @@
                       android:layout_margin="5dp"
                       android:onClick="buttonA"
                       android:text=""
-                      android:textColor="@color/grey"></info.hoang8f.widget.FButton>
+                      android:textColor="@color/black"></info.hoang8f.widget.FButton>
 
                   <info.hoang8f.widget.FButton
                       android:id="@+id/buttonB"
@@ -113,7 +113,7 @@
                       android:layout_margin="5dp"
                       android:onClick="buttonB"
                       android:text=""
-                      android:textColor="@color/grey" />
+                      android:textColor="@color/black" />
 
 
                   <info.hoang8f.widget.FButton
@@ -123,7 +123,7 @@
                       android:layout_margin="5dp"
                       android:onClick="buttonC"
                       android:text=""
-                      android:textColor="@color/grey" />
+                      android:textColor="@color/black" />
 
                   <info.hoang8f.widget.FButton
                       android:id="@+id/buttonD"
@@ -132,7 +132,7 @@
                       android:layout_margin="5dp"
                       android:onClick="buttonD"
                       android:text=""
-                      android:textColor="@color/grey" />
+                      android:textColor="@color/black" />
 
               </LinearLayout>
           </LinearLayout>
