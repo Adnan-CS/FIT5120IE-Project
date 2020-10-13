@@ -241,6 +241,18 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
             }
         }
     }*/
+   private class FetchNearestLocationTask extends AsyncTask<CurrentLocation, Void, Boolean> {
+       @Override
+       protected Boolean doInBackground(CurrentLocation... params) {
+           restApi.getNearestLocations(params[0]);
+           return true;
+       }
+
+       @Override
+       protected void onPostExecute(Boolean hasMessageSent) {
+
+       }
+   }
 
     private class FetchCounsellingTask extends AsyncTask<CurrentLocation, Void, List<Counsellingcenters>> {
         @Override
