@@ -19,4 +19,14 @@
     <string name="cancel">✖</string>
     <string name="scenerioquiz_score">Score</string>
     <string name="scenarios">Scenarios</string>
+    <string name="sos">SOS</string>
+    <string name="phoneNum">Phone Number</string>
+    <string name="editEmergencyMsg">Edit your emergency message</string>
+    <string name="typeMsg">Type your message</string>
+    <string name="sendCurrLoc">Send current location</string>
+    <string name="start">Start</string>
+    <string name="end">Stop</string>
+    <string name="pause">Pause</string>
+    <string name="Resume">Resume</string>
+    <string name="addEmgContact">Add\nContacts</string>
 </resources>

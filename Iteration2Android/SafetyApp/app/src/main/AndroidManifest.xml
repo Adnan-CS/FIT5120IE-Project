@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.workingsafe.safetyapp">
 
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -17,13 +19,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InfoActivity"
+        <activity android:name=".sos.ContactListActivity"></activity>
+        <activity android:name=".sos.TimerActivity" />
+
+        <service
+            android:name=".sos.SendSMSService"
+            android:exported="true" />
+
+        <activity android:name=".sos.AddContact" />
+        <activity
+            android:name=".InfoActivity"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity android:name=".QuizScoreActivity" />
-        <activity android:name=".QuestionsActivity"
+        <activity
+            android:name=".QuestionsActivity"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity android:name=".SetsActivity" />
         <activity
             android:name=".QuizCtgrsActivity"
@@ -31,27 +43,27 @@
         <activity
             android:name=".TestimonialActivity"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDR3vpj5OPhws7h5YVpdRubMX1B3R-YCIE" />
 
-        <service android:name=".service.MyLocationService" />
-
         <activity
             android:name=".CounselingActivity"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".videoquiz.HomeScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".videoquiz.HomeScreen"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity android:name=".videoquiz.PlayAgain" />
         <activity android:name=".videoquiz.GameWon" />
         <activity android:name=".videoquiz.Time_Up" />
-        <activity android:name=".videoquiz.MainGameActivity"
+        <activity
+            android:name=".videoquiz.MainGameActivity"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

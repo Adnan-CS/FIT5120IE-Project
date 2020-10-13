@@ -8,9 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 
 import android.widget.Toast;
+
+import com.workingsafe.safetyapp.model.ContactPerson;
+import com.workingsafe.safetyapp.sos.AddContact;
+import com.workingsafe.safetyapp.sos.ContactHelper;
+import com.workingsafe.safetyapp.sos.ContactListActivity;
+import com.workingsafe.safetyapp.sos.TimerActivity;
 import com.workingsafe.safetyapp.utility.Utility;
 import com.workingsafe.safetyapp.videoquiz.HomeScreen;
 import com.workingsafe.safetyapp.videoquiz.MainGameActivity;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     CardView counselingCard;
@@ -19,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     CardView quizzesCardView;
     CardView informationCard;
     CardView cardScenarios;
+    CardView cardSOSTimer;
+    CardView addEmgContact;
+    private ContactHelper contactHelper;
 
     private Intent serviceIntent;
     @Override
@@ -31,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         quizzesCardView = findViewById(R.id.quizzesCardVw);
         informationCard = findViewById(R.id.infoPage);
         cardScenarios = findViewById(R.id.quizzesScenarios);
+        cardSOSTimer = findViewById(R.id.gridTimeId);
+        addEmgContact = findViewById(R.id.gridAddContact);
+        contactHelper = new ContactHelper(this);
         informationCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +92,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, QuestionsActivity.class);
+                startActivity(intent);
+            }
+        });
+        cardSOSTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*ArrayList<ContactPerson> contactPersonList = contactHelper.getAllCotacts();
+                if(contactPersonList.size()>0){
+                    Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(MainActivity.this, "No emergency contact available", Toast.LENGTH_SHORT).show();
+                }*/
+                Intent intent = new Intent(MainActivity.this, ContactListActivity.class);
+                startActivity(intent);
+            }
+        });
+        addEmgContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddContact.class);
                 startActivity(intent);
             }
         });
