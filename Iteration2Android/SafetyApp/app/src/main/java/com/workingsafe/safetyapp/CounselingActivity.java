@@ -57,7 +57,11 @@ import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 import com.workingsafe.safetyapp.model.Counsellingcenters;
 import com.workingsafe.safetyapp.model.CurrentLocation;
+import com.workingsafe.safetyapp.model.Hospital;
 import com.workingsafe.safetyapp.model.Legalcenters;
+import com.workingsafe.safetyapp.model.NearestLocation;
+import com.workingsafe.safetyapp.model.PoliceStation;
+import com.workingsafe.safetyapp.model.SevenEleven;
 import com.workingsafe.safetyapp.restapi.RestApi;
 
 import java.math.BigDecimal;
@@ -241,16 +245,103 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
             }
         }
     }*/
-   private class FetchNearestLocationTask extends AsyncTask<CurrentLocation, Void, Boolean> {
+   private class FetchNearestLocationTask extends AsyncTask<CurrentLocation, Void, NearestLocation> {
        @Override
-       protected Boolean doInBackground(CurrentLocation... params) {
-           restApi.getNearestLocations(params[0]);
-           return true;
+       protected NearestLocation doInBackground(CurrentLocation... params) {
+           return restApi.getNearestLocations(params[0]);
        }
 
        @Override
-       protected void onPostExecute(Boolean hasMessageSent) {
+       protected void onPostExecute(NearestLocation nearestLocation) {
+           markerOptionsArrayList = new ArrayList<>();
 
+           List<Feature> symbolLayerIconFeatureList = new ArrayList<>();
+           int count = 0;
+           PoliceStation policeStation = null;
+           Hospital hospital = null;
+           SevenEleven sevenEleven = null;
+           policeStation = nearestLocation.getPoliceStation();
+           hospital = nearestLocation.getHospital();
+           sevenEleven = nearestLocation.getSevenEleven();
+
+           Feature feature1 = Feature.fromGeometry(
+                   Point.fromLngLat(policeStation.getLongitude(), policeStation.getLatitude()));
+           Feature feature2 = Feature.fromGeometry(
+                   Point.fromLngLat(hospital.getLongitude(), hospital.getLatitude()));
+           Feature feature3 = Feature.fromGeometry(
+                   Point.fromLngLat(sevenEleven.getLongitude(), sevenEleven.getLatitude()));
+
+           symbolLayerIconFeatureList.add(feature1);
+           symbolLayerIconFeatureList.add(feature2);
+           symbolLayerIconFeatureList.add(feature3);
+
+           feature1.addStringProperty("title","Police Station");
+           feature1.addStringProperty("address",policeStation.getStation_address());
+           feature1.addStringProperty("contact",policeStation.getPhone());
+           feature1.addStringProperty("suburb",policeStation.getSuburb()+"\nPostCode: "+policeStation.getPostcode());
+
+
+           feature2.addStringProperty("title",hospital.getHospital_name());
+           feature2.addStringProperty("address",hospital.getAddress());
+           feature2.addStringProperty("contact","");
+           feature2.addStringProperty("suburb",hospital.getSuburb()+"\nPostCode: "+hospital.getPostcode());
+
+
+           feature3.addStringProperty("title",sevenEleven.getStore_name());
+           feature3.addStringProperty("address",sevenEleven.getAddress());
+           feature3.addStringProperty("contact",sevenEleven.getPhone());
+           feature3.addStringProperty("suburb",sevenEleven.getSuburb()+"\nPostCode: "+sevenEleven.getPostcode());
+
+           double minLat = smallest(hospital.getLatitude(),policeStation.getLatitude(),sevenEleven.getLatitude());
+           double minLong = smallest(hospital.getLongitude(),policeStation.getLongitude(),sevenEleven.getLongitude());
+
+           double maxLat = largest(hospital.getLatitude(),policeStation.getLatitude(),sevenEleven.getLatitude());
+           double maxLong = largest(hospital.getLongitude(),policeStation.getLongitude(),sevenEleven.getLongitude());
+
+
+           locationOne = new LatLng(minLat,minLong);
+           locationTwo = new LatLng(maxLat,maxLong);
+/*           for (Counsellingcenters counsellingcenter : counsellingcenters) {
+               Feature feature = Feature.fromGeometry(
+                       Point.fromLngLat(counsellingcenter.getLongitude().doubleValue(), counsellingcenter.getLatitude().doubleValue()));
+               feature.addStringProperty("title",counsellingcenter.getCounselling_name());
+               feature.addStringProperty("address",counsellingcenter.getAddress());
+               feature.addStringProperty("contact",counsellingcenter.getContact_details());
+               feature.addStringProperty("suburb",counsellingcenter.getSuburbortown());
+               symbolLayerIconFeatureList.add(feature);
+               counsellingArrayList.add(counsellingcenter);
+               if(count == 0){
+                   locationOne = new LatLng(counsellingcenter.getLatitude().doubleValue(),counsellingcenter.getLongitude().doubleValue());
+               }
+               else if(count == 7){
+                   locationTwo = new LatLng(counsellingcenter.getLatitude().doubleValue(),counsellingcenter.getLongitude().doubleValue());
+               }
+               count++;
+           }*/
+           map.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+               @Override
+               public void onStyleLoaded(@NonNull Style style) {
+
+                   map.addOnMapClickListener(CounselingActivity.this);
+
+                   style.addImage(ICON_ID, BitmapFactory.decodeResource(
+                           CounselingActivity.this.getResources(), R.drawable.mapbox_marker_icon_default));
+                   style.addSource(new GeoJsonSource(SOURCE_ID,
+                           FeatureCollection.fromFeatures(symbolLayerIconFeatureList)));
+                   style.addLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
+                           .withProperties(
+                                   iconImage(ICON_ID),
+                                   iconAllowOverlap(true),
+                                   iconIgnorePlacement(false)
+                           ));
+               }
+           });
+           new Handler().postDelayed(new Runnable() {
+               @Override
+               public void run() {
+                   Toast.makeText(CounselingActivity.this, "Please Pinch-to-zoom", Toast.LENGTH_SHORT).show();
+               }
+           }, 3000);
        }
    }
 
@@ -431,7 +522,12 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                 getSupportActionBar().setTitle("Nearby Counselling Centres");
                 FetchCounsellingTask fetchCounsellingTask = new FetchCounsellingTask();
                 fetchCounsellingTask.execute(currentLocation);
-            }else{
+            }else if(TYPE_DATA.equals("NEARESTLOCATION")){
+                getSupportActionBar().setTitle("Nearest 24/7 Services");
+                FetchNearestLocationTask fetchNearestLocationTask = new FetchNearestLocationTask();
+                fetchNearestLocationTask.execute(currentLocation);
+            }
+            else{
                 getSupportActionBar().setTitle("Nearby Legal Centres");
                 FetchLegalCentrTask fetchLegalCentrTask = new FetchLegalCentrTask();
                 fetchLegalCentrTask.execute(currentLocation);
@@ -536,4 +632,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                     }
                 });
     }
+    private double largest(double first, double second, double third) { double max = first; if (second > max) { max = second; }   if (third > max) { max = third; }   return max; }
+
+    public double smallest(double first, double second, double third) { double min = first; if (second < min) { min = second; }   if (third < min) { min = third; }   return min; }
 }

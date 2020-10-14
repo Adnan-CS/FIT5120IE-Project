@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     CardView cardScenarios;
     CardView cardSOSTimer;
     CardView addEmgContact;
+    CardView nearestTwFoSeven;
     private ContactHelper contactHelper;
 
     private Intent serviceIntent;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         cardScenarios = findViewById(R.id.quizzesScenarios);
         cardSOSTimer = findViewById(R.id.gridTimeId);
         addEmgContact = findViewById(R.id.gridAddContact);
+        nearestTwFoSeven = findViewById(R.id.gridNearestLocation);
         contactHelper = new ContactHelper(this);
         informationCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +114,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ContactListActivity.class);
                 startActivity(intent);
+            }
+        });
+        nearestTwFoSeven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Utility.checkNetworkConnection(MainActivity.this) && Utility.LocationEnableRequest(MainActivity.this)){
+                    Intent intent = new Intent(MainActivity.this,CounselingActivity.class);
+                    intent.putExtra("TYPE","NEARESTLOCATION");
+                    startActivity(intent);
+                }
             }
         });
     }

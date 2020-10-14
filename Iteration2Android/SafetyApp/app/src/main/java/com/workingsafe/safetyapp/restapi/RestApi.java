@@ -8,6 +8,7 @@ import com.workingsafe.safetyapp.model.Counsellingcenters;
 import com.workingsafe.safetyapp.model.CurrentLocation;
 import com.workingsafe.safetyapp.model.Hospital;
 import com.workingsafe.safetyapp.model.Legalcenters;
+import com.workingsafe.safetyapp.model.NearestLocation;
 import com.workingsafe.safetyapp.model.PoliceStation;
 import com.workingsafe.safetyapp.model.SevenEleven;
 
@@ -84,7 +85,7 @@ public class RestApi {
         }
         return counsellingcenters;
     }
-    public void getNearestLocations(CurrentLocation currentLocation) {
+    public NearestLocation getNearestLocations(CurrentLocation currentLocation) {
         String finalResult = "";
         List<Counsellingcenters> counsellingcenters = null;
         Gson gson = new Gson();
@@ -97,56 +98,62 @@ public class RestApi {
             Response response = client.newCall(request).execute();
             strResponse = response.body().string();
             JSONArray jsonArray = new JSONArray(strResponse);
+            JSONObject obj1=null;
+            JSONObject obj2=null;
+            JSONObject obj3=null;
+            JSONObject obj4=null;
+            try{
+                obj1= jsonArray.getJSONObject(0);
+                obj2 = jsonArray.getJSONObject(1);
+                obj3 = jsonArray.getJSONObject(2);
+                obj4 = jsonArray.getJSONObject(20);
+            }catch(Exception ex){
 
-            JSONObject obj1= jsonArray.getJSONObject(0);
-            JSONObject obj2 = jsonArray.getJSONObject(1);
-            JSONObject obj3 = jsonArray.getJSONObject(2);
+            }
+
             PoliceStation policeStation=null;
             SevenEleven sevenEleven=null;
             Hospital hospital = null;
             Gson gsonBuild = new GsonBuilder().create();
 
-            if(obj1.getString("locationType").equals("police_station")){
+            if(obj1!=null && obj1.getString("locationType").equals("police_station")){
                 policeStation = gsonBuild.fromJson(String.valueOf(obj1),PoliceStation.class);
             }
-            else if(obj1.getString("locationType").equals("hospital")){
+            else if(obj1!=null && obj1.getString("locationType").equals("hospital")){
                 hospital = gsonBuild.fromJson(String.valueOf(obj1),Hospital.class);
             }
-            else if(obj1.getString("locationType").equals("seveneleven")){
+            else if(obj1!=null && obj1.getString("locationType").equals("seveneleven")){
                 sevenEleven = gsonBuild.fromJson(String.valueOf(obj1),SevenEleven.class);
             }
 
-            if(obj2.getString("locationType").equals("police_station")){
+            if(obj2!=null && obj2.getString("locationType").equals("police_station")){
                 policeStation = gsonBuild.fromJson(String.valueOf(obj2),PoliceStation.class);
             }
-            else if(obj2.getString("locationType").equals("hospital")){
+            else if(obj2!=null && obj2.getString("locationType").equals("hospital")){
                 hospital = gsonBuild.fromJson(String.valueOf(obj2),Hospital.class);
             }
-            else if(obj2.getString("locationType").equals("seveneleven")){
+            else if(obj2!=null && obj2.getString("locationType").equals("seveneleven")){
                 sevenEleven = gsonBuild.fromJson(String.valueOf(obj2),SevenEleven.class);
             }
 
 
-            if(obj3.getString("locationType").equals("police_station")){
+            if(obj3!=null && obj3.getString("locationType").equals("police_station")){
                 policeStation = gsonBuild.fromJson(String.valueOf(obj3),PoliceStation.class);
             }
-            else if(obj3.getString("locationType").equals("hospital")){
+            else if(obj3!=null && obj3.getString("locationType").equals("hospital")){
                 hospital = gsonBuild.fromJson(String.valueOf(obj3),Hospital.class);
             }
-            else if(obj3.getString("locationType").equals("seveneleven")){
+            else if(obj3!=null && obj3.getString("locationType").equals("seveneleven")){
                 sevenEleven = gsonBuild.fromJson(String.valueOf(obj3),SevenEleven.class);
             }
 
-
-            String sevenElevenData = sevenEleven.getStore_name();
-            String hospitalData = hospital.getHospital_name();
-            String policeStationData = policeStation.getStation_address();
-            //String myVehicleID = obj.getString("station_address");
-
+            NearestLocation nearestLocation = new NearestLocation(policeStation, sevenEleven, hospital);
+            return nearestLocation;
         }  catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

@@ -28,6 +28,7 @@
     <string name="end">Stop</string>
     <string name="pause">Pause</string>
     <string name="Resume">Resume</string>
-    <string name="addEmgContact">Add\nContacts</string>
+    <string name="addEmgContact">Contacts\nList</string>
     <string name="addContact">Add Contact</string>
+    <string name="twentyFourSeven">24/7 Places</string>
 </resources>
