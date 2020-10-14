@@ -27,7 +27,7 @@ public class ContactHelper extends SQLiteOpenHelper {
     private Context currentContext;
 
     public ContactHelper(Context context) {
-        super(context, DATABASE_NAME, null, 5);
+        super(context, DATABASE_NAME, null, 7);
         currentContext = context;
     }
 
@@ -93,11 +93,14 @@ public class ContactHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Integer deleteContact(Integer id) {
+    public Integer deleteContact(String contactNumber) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("contacts",
+/*        return db.delete("contacts",
                 "id = ? ",
-                new String[]{Integer.toString(id)});
+                new String[]{});*/
+        String where="phone=?";
+        int numberOFEntriesDeleted= db.delete("contacts", where, new String[]{contactNumber}) ;
+        return numberOFEntriesDeleted;
     }
 
     public ArrayList<ContactPerson> getAllCotacts() {

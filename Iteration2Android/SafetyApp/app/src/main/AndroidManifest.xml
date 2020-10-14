@@ -19,14 +19,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".sos.ContactListActivity"></activity>
-        <activity android:name=".sos.TimerActivity" />
+        <activity android:name=".sos.ContactListActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".sos.TimerActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"/>
 
         <service
             android:name=".sos.SendSMSService"
             android:exported="true" />
 
-        <activity android:name=".sos.AddContact" />
+        <activity android:name=".sos.AddContact"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".sos.ContactListActivity"/>
         <activity
             android:name=".InfoActivity"
             android:parentActivityName=".MainActivity"

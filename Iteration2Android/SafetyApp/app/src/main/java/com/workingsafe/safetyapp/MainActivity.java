@@ -98,21 +98,19 @@ public class MainActivity extends AppCompatActivity {
         cardSOSTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*ArrayList<ContactPerson> contactPersonList = contactHelper.getAllCotacts();
+                ArrayList<ContactPerson> contactPersonList = contactHelper.getAllCotacts();
                 if(contactPersonList.size()>0){
                     Intent intent = new Intent(MainActivity.this, TimerActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(MainActivity.this, "No emergency contact available", Toast.LENGTH_SHORT).show();
-                }*/
-                Intent intent = new Intent(MainActivity.this, ContactListActivity.class);
-                startActivity(intent);
+                }
             }
         });
         addEmgContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddContact.class);
+                Intent intent = new Intent(MainActivity.this, ContactListActivity.class);
                 startActivity(intent);
             }
         });

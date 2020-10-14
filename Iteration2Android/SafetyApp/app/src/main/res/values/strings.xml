@@ -29,4 +29,5 @@
     <string name="pause">Pause</string>
     <string name="Resume">Resume</string>
     <string name="addEmgContact">Add\nContacts</string>
+    <string name="addContact">Add Contact</string>
 </resources>

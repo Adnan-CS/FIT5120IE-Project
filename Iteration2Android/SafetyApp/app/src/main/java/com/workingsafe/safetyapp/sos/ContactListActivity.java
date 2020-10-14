@@ -6,11 +6,16 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.workingsafe.safetyapp.MainActivity;
 import com.workingsafe.safetyapp.R;
 import com.workingsafe.safetyapp.TestimonialActivity;
 import com.workingsafe.safetyapp.TestimonialAdapter;
@@ -66,8 +71,34 @@ public class ContactListActivity extends AppCompatActivity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            contactPersonList.remove(viewHolder.getAdapterPosition());
-            contactListAdapter.notifyDataSetChanged();
+            String contactNumber = contactPersonList.get(viewHolder.getAdapterPosition()).getNumber();
+            int noOfEntriesDeleted = contactHelper.deleteContact(contactNumber);
+            if(noOfEntriesDeleted==1){
+                contactPersonList.remove(viewHolder.getAdapterPosition());
+                contactListAdapter.notifyDataSetChanged();
+                Toast.makeText(ContactListActivity.this,"User with contact number "+contactNumber+" has been deleted successfully.",Toast.LENGTH_SHORT).show();
+            }
         }
     };
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar_additem, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_addContact:
+                Intent intent = new Intent(ContactListActivity.this, AddContact.class);
+                startActivity(intent);
+                return true;
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 }

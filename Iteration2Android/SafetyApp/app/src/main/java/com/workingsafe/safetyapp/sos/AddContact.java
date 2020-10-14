@@ -131,6 +131,10 @@ public class AddContact extends AppCompatActivity implements CompoundButton.OnCh
                 message.getText().toString(), String.valueOf(isChecked))) {
             Toast.makeText(getApplicationContext(), "Contact has been saved successfully.",
                     Toast.LENGTH_SHORT).show();
+            name.setText("");
+            number.setText("");
+            message.setText("");
+            switchCase.setChecked(false);
         }
     }
 

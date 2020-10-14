@@ -244,7 +244,12 @@ public class TimerActivity extends AppCompatActivity {
                 try{
                     for(int j=0;j<contactPersonList.size();j++) {
                         if(newAddress.length()>0){
-                            message = contactPersonList.get(j).getMessage() + "\nAddress: "+ newAddress;
+/*                            if(contactPersonList.get(j).isShareLocation()){
+                                message = contactPersonList.get(j).getMessage() + "\nAddress: "+ newAddress;
+                            }else{
+                                message = contactPersonList.get(j).getMessage();
+                            }*/
+                            message = "Emergency Help\nMessage: "+contactPersonList.get(j).getMessage() + "\nAddress: "+ newAddress;
                         }else{
                             message = contactPersonList.get(j).getMessage();
                         }
@@ -277,65 +282,5 @@ public class TimerActivity extends AppCompatActivity {
             }
         }
     }
-    //Send user current location
-    /*@SuppressWarnings({"MissingPermission"})
-    private void enableLocationComponent() {
-        // Check if permissions are enabled and if not request
-        if (PermissionsManager.areLocationPermissionsGranted(this)) {
-
-            // Get an instance of the component
-            LocationComponent locationComponent = map.getLocationComponent();
-
-            // Activate with options
-            locationComponent.activateLocationComponent(
-                    LocationComponentActivationOptions.builder(this, null).build());
-
-            // Enable to make component visible
-            locationComponent.setLocationComponentEnabled(true);
-
-            // Set the component's camera mode
-            locationComponent.setCameraMode(CameraMode.TRACKING_COMPASS);
-
-            // Set the component's render mode
-            locationComponent.setRenderMode(RenderMode.COMPASS);
-
-            //Fetch async task method
-            CurrentLocation currentLocation = new CurrentLocation(
-                    BigDecimal.valueOf(map.getLocationComponent().getLastKnownLocation().getLatitude()),
-                    BigDecimal.valueOf(map.getLocationComponent().getLastKnownLocation().getLongitude()));
-            originPoint = Point.fromLngLat(map.getLocationComponent().getLastKnownLocation().getLongitude(),map.getLocationComponent().getLastKnownLocation().getLatitude());
-
-            //Call reverse geo-coding from here
-            Log.d("USERCURLOC","This is user current location: "+originPoint);
-        } else {
-            permissionsManager = new PermissionsManager((PermissionsListener) this);
-            permissionsManager.requestLocationPermissions(this);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    @Override
-    public void onExplanationNeeded(List<String> permissionsToExplain) {
-        Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onPermissionResult(boolean granted) {
-        if (granted) {
-            map.getStyle(new Style.OnStyleLoaded() {
-                @Override
-                public void onStyleLoaded(@NonNull Style style) {
-                    enableLocationComponent();
-                }
-            });
-        } else {
-            Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show();
-            finish();
-        }
-    }*/
 
 }
