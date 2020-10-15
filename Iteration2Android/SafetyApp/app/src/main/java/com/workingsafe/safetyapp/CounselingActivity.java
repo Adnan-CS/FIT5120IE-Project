@@ -301,23 +301,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
 
            locationOne = new LatLng(minLat,minLong);
            locationTwo = new LatLng(maxLat,maxLong);
-/*           for (Counsellingcenters counsellingcenter : counsellingcenters) {
-               Feature feature = Feature.fromGeometry(
-                       Point.fromLngLat(counsellingcenter.getLongitude().doubleValue(), counsellingcenter.getLatitude().doubleValue()));
-               feature.addStringProperty("title",counsellingcenter.getCounselling_name());
-               feature.addStringProperty("address",counsellingcenter.getAddress());
-               feature.addStringProperty("contact",counsellingcenter.getContact_details());
-               feature.addStringProperty("suburb",counsellingcenter.getSuburbortown());
-               symbolLayerIconFeatureList.add(feature);
-               counsellingArrayList.add(counsellingcenter);
-               if(count == 0){
-                   locationOne = new LatLng(counsellingcenter.getLatitude().doubleValue(),counsellingcenter.getLongitude().doubleValue());
-               }
-               else if(count == 7){
-                   locationTwo = new LatLng(counsellingcenter.getLatitude().doubleValue(),counsellingcenter.getLongitude().doubleValue());
-               }
-               count++;
-           }*/
+
            map.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
                @Override
                public void onStyleLoaded(@NonNull Style style) {

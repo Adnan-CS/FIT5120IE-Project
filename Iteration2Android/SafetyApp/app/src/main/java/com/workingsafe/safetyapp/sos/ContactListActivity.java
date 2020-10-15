@@ -38,6 +38,7 @@ public class ContactListActivity extends AppCompatActivity {
         contactHelper = new ContactHelper(this);
         contactPersonList = new ArrayList<>();
         //After getting data
+        getSupportActionBar().setTitle("Emergency Contact List");
         FetchContactTask fetchContactTask = new FetchContactTask();
         fetchContactTask.execute();
         new ItemTouchHelper(itemTouchHelperCallBck).attachToRecyclerView(recyclerView);
