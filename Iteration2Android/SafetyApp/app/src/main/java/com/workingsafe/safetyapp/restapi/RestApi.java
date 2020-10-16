@@ -116,34 +116,34 @@ public class RestApi {
             Hospital hospital = null;
             Gson gsonBuild = new GsonBuilder().create();
 
-            if(obj1!=null && obj1.getString("locationType").equals("police_station")){
+            if(obj1!=null && obj1.getString("locationType").equals("police")){
                 policeStation = gsonBuild.fromJson(String.valueOf(obj1),PoliceStation.class);
             }
             else if(obj1!=null && obj1.getString("locationType").equals("hospital")){
                 hospital = gsonBuild.fromJson(String.valueOf(obj1),Hospital.class);
             }
-            else if(obj1!=null && obj1.getString("locationType").equals("seveneleven")){
+            else if(obj1!=null && obj1.getString("locationType").equals("restaurant")){
                 sevenEleven = gsonBuild.fromJson(String.valueOf(obj1),SevenEleven.class);
             }
 
-            if(obj2!=null && obj2.getString("locationType").equals("police_station")){
+            if(obj2!=null && obj2.getString("locationType").equals("police")){
                 policeStation = gsonBuild.fromJson(String.valueOf(obj2),PoliceStation.class);
             }
             else if(obj2!=null && obj2.getString("locationType").equals("hospital")){
                 hospital = gsonBuild.fromJson(String.valueOf(obj2),Hospital.class);
             }
-            else if(obj2!=null && obj2.getString("locationType").equals("seveneleven")){
+            else if(obj2!=null && obj2.getString("locationType").equals("restaurant")){
                 sevenEleven = gsonBuild.fromJson(String.valueOf(obj2),SevenEleven.class);
             }
 
 
-            if(obj3!=null && obj3.getString("locationType").equals("police_station")){
+            if(obj3!=null && obj3.getString("locationType").equals("police")){
                 policeStation = gsonBuild.fromJson(String.valueOf(obj3),PoliceStation.class);
             }
             else if(obj3!=null && obj3.getString("locationType").equals("hospital")){
                 hospital = gsonBuild.fromJson(String.valueOf(obj3),Hospital.class);
             }
-            else if(obj3!=null && obj3.getString("locationType").equals("seveneleven")){
+            else if(obj3!=null && obj3.getString("locationType").equals("restaurant")){
                 sevenEleven = gsonBuild.fromJson(String.valueOf(obj3),SevenEleven.class);
             }
 

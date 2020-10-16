@@ -19,20 +19,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".sos.ContactListActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".sos.TimerActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".nearloc.NearByLocActivity"></activity>
+        <activity
+            android:name=".sos.ContactListActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".sos.TimerActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".sos.SendSMSService"
             android:exported="true" />
 
-        <activity android:name=".sos.AddContact"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".sos.ContactListActivity"/>
+        <activity
+            android:name=".sos.AddContact"
+            android:parentActivityName=".sos.ContactListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".InfoActivity"
             android:parentActivityName=".MainActivity"

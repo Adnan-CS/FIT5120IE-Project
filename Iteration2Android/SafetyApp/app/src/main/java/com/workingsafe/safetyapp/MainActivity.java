@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.workingsafe.safetyapp.model.ContactPerson;
+import com.workingsafe.safetyapp.nearloc.NearByLocActivity;
 import com.workingsafe.safetyapp.sos.AddContact;
 import com.workingsafe.safetyapp.sos.ContactHelper;
 import com.workingsafe.safetyapp.sos.ContactListActivity;
@@ -120,8 +121,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(Utility.checkNetworkConnection(MainActivity.this) && Utility.LocationEnableRequest(MainActivity.this)){
-                    Intent intent = new Intent(MainActivity.this,CounselingActivity.class);
-                    intent.putExtra("TYPE","NEARESTLOCATION");
+                    Intent intent = new Intent(MainActivity.this, NearByLocActivity.class);
                     startActivity(intent);
                 }
             }

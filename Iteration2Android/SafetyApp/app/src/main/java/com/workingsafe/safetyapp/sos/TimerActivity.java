@@ -31,22 +31,10 @@ import com.mapbox.api.geocoding.v5.models.GeocodingResponse;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.location.LocationComponent;
-import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
-import com.mapbox.mapboxsdk.location.modes.CameraMode;
-import com.mapbox.mapboxsdk.location.modes.RenderMode;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
-import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigation;
-import com.workingsafe.safetyapp.CounselingActivity;
+
 import com.workingsafe.safetyapp.R;
 import com.workingsafe.safetyapp.model.ContactPerson;
-import com.workingsafe.safetyapp.model.CurrentLocation;
-import com.workingsafe.safetyapp.model.Legalcenters;
+
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

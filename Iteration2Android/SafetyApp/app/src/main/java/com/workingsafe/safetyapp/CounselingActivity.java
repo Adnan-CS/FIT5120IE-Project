@@ -48,6 +48,10 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.plugins.annotation.OnSymbolClickListener;
+import com.mapbox.mapboxsdk.plugins.annotation.Symbol;
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager;
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
@@ -306,18 +310,40 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                @Override
                public void onStyleLoaded(@NonNull Style style) {
 
-                   map.addOnMapClickListener(CounselingActivity.this);
+                   //map.addOnMapClickListener(CounselingActivity.this);
 
                    style.addImage(ICON_ID, BitmapFactory.decodeResource(
                            CounselingActivity.this.getResources(), R.drawable.mapbox_marker_icon_default));
                    style.addSource(new GeoJsonSource(SOURCE_ID,
                            FeatureCollection.fromFeatures(symbolLayerIconFeatureList)));
-                   style.addLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
+      /*             style.addLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
                            .withProperties(
                                    iconImage(ICON_ID),
                                    iconAllowOverlap(true),
                                    iconIgnorePlacement(false)
-                           ));
+                           ))*/;
+                   SymbolManager symbolManager = new SymbolManager(mapView, map, style);
+                   symbolManager.setIconAllowOverlap(true);
+                   symbolManager.setIconIgnorePlacement(true);
+                   Symbol symbol = symbolManager.create(new SymbolOptions()
+                           .withLatLng(locationOne)
+                           .withIconImage("policestation-15")
+                           .withIconSize(3.0f));
+                   symbolManager.addClickListener(new OnSymbolClickListener() {
+                       @Override
+                       public void onAnnotationClick(Symbol symbol) {
+
+                           Toast.makeText(CounselingActivity.this,
+                                   getString(R.string.app_name)+" "+symbol.getLatLng().toString(), Toast.LENGTH_SHORT).show();
+/*                           symbol.setIconImage("hospital-15");
+                           symbolManager.update(symbol);*/
+                       }
+                   });
+/*                   MarkerViewManager markerViewManager = new MarkerViewManager(mapView, map);
+                   MarkerView markerView = new MarkerView(locationOne, R.layout.alert_view_layout);
+
+                   markerViewManager.addMarker(markerView);*/
+
                }
            });
            new Handler().postDelayed(new Runnable() {
