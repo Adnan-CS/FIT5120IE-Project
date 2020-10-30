@@ -235,7 +235,7 @@ public class NearByLocActivity extends AppCompatActivity implements OnMapReadyCa
 
 /*                    style.addImage(ICON_ID, BitmapFactory.decodeResource(
                             NearByLocActivity.this.getResources(), PropertyFactory.iconImage("locationType-15"));*/
-                    style.addLayer(myLayer.withProperties(PropertyFactory.iconImage("{locationType}-15"),iconSize(2.0f)));
+                    style.addLayer(myLayer.withProperties(PropertyFactory.iconImage("{locationType}-15"),iconSize(2.0f),iconAllowOverlap(true),iconIgnorePlacement(false)));
 /*                    style.addLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
                             .withProperties(
                                     PropertyFactory.iconImage(ICON_ID),

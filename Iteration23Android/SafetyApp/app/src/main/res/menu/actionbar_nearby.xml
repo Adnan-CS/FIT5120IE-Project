@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_nearby"
-        android:icon="@drawable/twentyfour"
+        android:icon="@drawable/sos"
         android:title="@string/emg_nearby"
         app:showAsAction="ifRoom"/>
 </menu>

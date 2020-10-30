@@ -13,6 +13,8 @@ import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.workingsafe.safetyapp.MainActivity;
@@ -24,11 +26,15 @@ import com.workingsafe.safetyapp.model.ContactPerson;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.hoang8f.widget.FButton;
+
 public class ContactListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ContactListAdapter contactListAdapter;
     private ContactHelper contactHelper;
     private List<ContactPerson> contactPersonList;
+    private FButton addContactNavBtn;
+    private TextView emgContactTxtMsg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +43,20 @@ public class ContactListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(ContactListActivity.this));
         contactHelper = new ContactHelper(this);
         contactPersonList = new ArrayList<>();
+        addContactNavBtn = findViewById(R.id.showAddContactBtn);
+        emgContactTxtMsg = findViewById(R.id.emgContactEmptyMsg);
         //After getting data
         getSupportActionBar().setTitle("Emergency Contact List");
         FetchContactTask fetchContactTask = new FetchContactTask();
         fetchContactTask.execute();
         new ItemTouchHelper(itemTouchHelperCallBck).attachToRecyclerView(recyclerView);
+        addContactNavBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContactListActivity.this, AddContact.class);
+                startActivity(intent);
+            }
+        });
     }
     private class FetchContactTask extends AsyncTask<Void, Void, Boolean>
     {
@@ -59,8 +74,14 @@ public class ContactListActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean hasContact)
         {
             if(hasContact){
+                addContactNavBtn.setVisibility(View.GONE);
+                emgContactTxtMsg.setVisibility(View.GONE);
                 contactListAdapter = new ContactListAdapter(ContactListActivity.this,contactPersonList);
                 recyclerView.setAdapter(contactListAdapter);
+            }else{
+                addContactNavBtn.setVisibility(View.VISIBLE);
+                emgContactTxtMsg.setVisibility(View.VISIBLE);
+                //Toast.makeText(ContactListActivity.this,"Contact list is empty. Please add contact",Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -78,6 +99,10 @@ public class ContactListActivity extends AppCompatActivity {
                 contactPersonList.remove(viewHolder.getAdapterPosition());
                 contactListAdapter.notifyDataSetChanged();
                 Toast.makeText(ContactListActivity.this,"User with contact number "+contactNumber+" has been deleted successfully.",Toast.LENGTH_SHORT).show();
+                if(contactPersonList.size()==0){
+                    addContactNavBtn.setVisibility(View.VISIBLE);
+                    emgContactTxtMsg.setVisibility(View.VISIBLE);
+                }
             }
         }
     };

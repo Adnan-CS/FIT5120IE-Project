@@ -27,17 +27,6 @@ public class Utility {
             e.printStackTrace() ;
         }
         if (!gpsEnabled && !networkEnabled) {
-/*            new AlertDialog.Builder(context)
-                    .setMessage( "Please enable GPS" )
-                    .setPositiveButton( "Settings" , new
-                            DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick (DialogInterface paramDialogInterface , int paramInt) {
-                                    context.startActivity( new Intent(Settings. ACTION_LOCATION_SOURCE_SETTINGS )) ;
-                                }
-                            })
-                    .setNegativeButton( "Cancel" , null )
-                    .show() ;*/
             Toast.makeText(context.getApplicationContext(),"Please enable your GPS connection.",Toast.LENGTH_LONG).show();
             return false;
         }

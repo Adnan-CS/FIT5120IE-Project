@@ -4,6 +4,7 @@ const { getAllCenters } = require("./center.service")
 module.exports = {
     getNearestCenters: (req, res) => {
       const body = req.body;
+      console.log(body)
       getAllCenters(body, (err, results) => {
         if (err) {
           console.log(err);
@@ -12,10 +13,8 @@ module.exports = {
             message: "Database Error"
           });
         }
-        return res.status(200).json({
-          success: 1,
-          data: calculateNearestCentre(body,results)
-        });
+        console.log("Called Legal Centres");
+        return res.status(200).json( calculateNearestCentre(body,results));
       });
     }
 };

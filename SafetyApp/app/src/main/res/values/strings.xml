@@ -3,4 +3,5 @@
     <string name="sets">Sets</string>
     <string name="share">Share</string>
     <string name="next">Next</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiYWRuYW4xMiIsImEiOiJja2V3d3RkaDcwYjlzMndwZjMwanA0cDV6In0.hHCiqr1MGnmN0Lr6ceGLCg</string>
 </resources>

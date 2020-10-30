@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -33,6 +34,7 @@ import com.mapbox.api.geocoding.v5.MapboxGeocoding;
 import com.mapbox.api.geocoding.v5.models.CarmenFeature;
 import com.mapbox.api.geocoding.v5.models.GeocodingResponse;
 import com.mapbox.geojson.Point;
+import com.workingsafe.safetyapp.CounselingActivity;
 import com.workingsafe.safetyapp.R;
 import com.workingsafe.safetyapp.TestimonialAdapter;
 import com.workingsafe.safetyapp.model.ContactPerson;
@@ -104,7 +106,7 @@ public class AddContact extends AppCompatActivity implements CompoundButton.OnCh
                         saveData();
                     }
                 }else{
-                    Toast.makeText(AddContact.this,"Please provide the required field",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddContact.this,"Please provide the required fields",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -150,6 +152,13 @@ public class AddContact extends AppCompatActivity implements CompoundButton.OnCh
             number.setText("");
             message.setText("");
             switchCase.setChecked(false);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(AddContact.this, ContactListActivity.class);
+                    startActivity(intent);
+                }
+            }, 2000);
         }
     }
 

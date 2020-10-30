@@ -165,22 +165,6 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
     protected void onResume() {
         super.onResume();
         mapView.onResume();
-/*        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        restApi = new RestApi();
-        markerOptionsArrayList = null;
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.counselling_map);
-        //Initialize fused location
-        client = LocationServices.getFusedLocationProviderClient(this);
-        //Asking for Permission checking
-        if (ActivityCompat.checkSelfPermission(CounselingActivity.this,
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            //When the permission is granted
-            getUserCurrentLocation();
-        }
-        else{
-            ActivityCompat.requestPermissions(CounselingActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
-        }*/
     }
 
     @Override
@@ -194,61 +178,6 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
         return true;
     }
 
-   /* private void getUserCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Task<Location> task = client.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(final Location location) {
-                if(location!=null){
-                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-                        @Override
-                        public void onMapReady(GoogleMap googleMap) {
-                            LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
-
-                            //Creating my current location marker option
-                            MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("My location");
-                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                            //Need to zoom towards my current location
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
-                            //Add the marker (markerOptions) on the map
-                            googleMap.addMarker(markerOptions);
-                            myMap = googleMap;
-                            //Added UI Current location purpose icon
-                            myMap.setMyLocationEnabled(true);
-                            CurrentLocation currentLocation = new CurrentLocation(BigDecimal.valueOf(location.getLatitude()),BigDecimal.valueOf(location.getLongitude()));
-                            if(TYPE_DATA.equals("COUNSELLING")){
-                                FetchCounsellingTask fetchCounsellingTask = new FetchCounsellingTask();
-                                fetchCounsellingTask.execute(currentLocation);
-                            }else{
-                                FetchLegalCentrTask fetchLegalCentrTask = new FetchLegalCentrTask();
-                                fetchLegalCentrTask.execute(currentLocation);
-                            }
-                        }
-                    });
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==REQUEST_CODE){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                //Get user current location when permission is granted
-                getUserCurrentLocation();
-            }
-        }
-    }*/
    private class FetchNearestLocationTask extends AsyncTask<CurrentLocation, Void, NearestLocation> {
        @Override
        protected NearestLocation doInBackground(CurrentLocation... params) {
@@ -316,12 +245,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
                            CounselingActivity.this.getResources(), R.drawable.mapbox_marker_icon_default));
                    style.addSource(new GeoJsonSource(SOURCE_ID,
                            FeatureCollection.fromFeatures(symbolLayerIconFeatureList)));
-      /*             style.addLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
-                           .withProperties(
-                                   iconImage(ICON_ID),
-                                   iconAllowOverlap(true),
-                                   iconIgnorePlacement(false)
-                           ))*/;
+
                    SymbolManager symbolManager = new SymbolManager(mapView, map, style);
                    symbolManager.setIconAllowOverlap(true);
                    symbolManager.setIconIgnorePlacement(true);
@@ -335,14 +259,9 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
 
                            Toast.makeText(CounselingActivity.this,
                                    getString(R.string.app_name)+" "+symbol.getLatLng().toString(), Toast.LENGTH_SHORT).show();
-/*                           symbol.setIconImage("hospital-15");
-                           symbolManager.update(symbol);*/
                        }
                    });
-/*                   MarkerViewManager markerViewManager = new MarkerViewManager(mapView, map);
-                   MarkerView markerView = new MarkerView(locationOne, R.layout.alert_view_layout);
 
-                   markerViewManager.addMarker(markerView);*/
 
                }
            });

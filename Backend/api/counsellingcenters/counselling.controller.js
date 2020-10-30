@@ -12,10 +12,7 @@ module.exports = {
             message: "Database Error"
           });
         }
-        return res.status(200).json({
-          success: 1,
-          data: calculateNearestCounselling(body,results)
-        });
+        return res.status(200).json(calculateNearestCounselling(body,results));
       });
     }
 };

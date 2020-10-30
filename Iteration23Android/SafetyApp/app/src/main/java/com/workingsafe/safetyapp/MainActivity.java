@@ -141,12 +141,15 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_nearby:
-                Intent intent = new Intent(MainActivity.this, NearByLocActivity.class);
-                startActivity(intent);
+                ArrayList<ContactPerson> contactPersonList = contactHelper.getAllCotacts();
+                if(contactPersonList.size()>0){
+                    Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(MainActivity.this, "No emergency contact available", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
 
         }

@@ -27,7 +27,7 @@ public class ContactHelper extends SQLiteOpenHelper {
     private Context currentContext;
 
     public ContactHelper(Context context) {
-        super(context, DATABASE_NAME, null, 7);
+        super(context, DATABASE_NAME, null, 8);
         currentContext = context;
     }
 

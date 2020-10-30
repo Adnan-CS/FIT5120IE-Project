@@ -32,4 +32,5 @@
     <string name="addContact">Add Contact</string>
     <string name="twentyFourSeven">24/7 Places</string>
     <string name="emg_nearby">Emg Nearby</string>
+    <string name="emptyContactMsh">Looks like you don’t have any emergency contact yet! Add your first one!</string>
 </resources>

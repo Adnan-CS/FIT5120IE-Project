@@ -19,9 +19,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".nearloc.NearByLocActivity"
+        <activity android:name=".SlidingHome"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".nearloc.NearByLocActivity"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" ></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".sos.ContactListActivity"
             android:parentActivityName=".MainActivity"
@@ -76,12 +86,9 @@
             android:name=".videoquiz.MainGameActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".SlidingHome">
         </activity>
 
         <uses-library
