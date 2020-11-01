@@ -233,58 +233,8 @@ public class NearByLocActivity extends AppCompatActivity implements OnMapReadyCa
 
                     SymbolLayer myLayer = new SymbolLayer(LAYER_ID, SOURCE_ID);
 
-/*                    style.addImage(ICON_ID, BitmapFactory.decodeResource(
-                            NearByLocActivity.this.getResources(), PropertyFactory.iconImage("locationType-15"));*/
                     style.addLayer(myLayer.withProperties(PropertyFactory.iconImage("{locationType}-15"),iconSize(2.0f),iconAllowOverlap(true),iconIgnorePlacement(false)));
-/*                    style.addLayer(new SymbolLayer(LAYER_ID, SOURCE_ID)
-                            .withProperties(
-                                    PropertyFactory.iconImage(ICON_ID),
-                                    iconAllowOverlap(true),
-                                    iconIgnorePlacement(false)
-                            ));*/
 
-                  /*  symbolManager = new SymbolManager(mapView, map, style);
-                    symbolManager.setIconAllowOverlap(true);
-                    symbolManager.setIconIgnorePlacement(true);
-                    Symbol symbolHospital = symbolManager.create(new SymbolOptions()
-                            .withLatLng(locationHospital)
-                            .withIconImage("hospital-15")
-                            .withIconSize(2.0f));
-                    Symbol symbolPolice = symbolManager.create(new SymbolOptions()
-                            .withLatLng(locationPolice)
-                            .withIconImage("police-15")
-                            .withIconSize(2.0f));
-                    Symbol symbolCafe = symbolManager.create(new SymbolOptions()
-                            .withLatLng(locationCafe)
-                            .withIconImage("cafe-15")
-                            .withIconSize(2.0f));
-
-                    symbolManager.addClickListener(new OnSymbolClickListener() {
-                        @Override
-                        public void onAnnotationClick(Symbol symbol) {
-                            Toast.makeText(NearByLocActivity.this, "Clicked ...", Toast.LENGTH_SHORT).show();
-                            PointF screenPoint = map.getProjection().toScreenLocation(symbol.getLatLng());
-                            List<Feature> features = map.queryRenderedFeatures(screenPoint, LAYER_ID);
-                            if (!features.isEmpty()) {
-                                Feature selectedFeature = features.get(0);
-                                selectedFeature.addBooleanProperty("selected", true);
-                                String title = selectedFeature.getStringProperty("title");
-                                String address = selectedFeature.getStringProperty("address");
-                                String contact = selectedFeature.getStringProperty("contact");
-                                String suburb = selectedFeature.getStringProperty("suburb");
-                                new AlertDialog.Builder(NearByLocActivity.this)
-                                        .setTitle(title)
-                                        .setMessage("Address: " + address + "\n\n" + "Contact: " + contact + "\n" + "Suburb/Town: " + suburb)
-                                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
-                                            }
-                                        })
-                                        .show();
-                                Point destination = Point.fromLngLat(symbol.getLatLng().getLongitude(), symbol.getLatLng().getLatitude());
-                                getRoute(originPoint, destination);
-                            }
-                        }
-                    });*/
                 }
             });
             new Handler().postDelayed(new Runnable() {

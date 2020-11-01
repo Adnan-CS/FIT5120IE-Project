@@ -102,19 +102,7 @@ public class CounselingActivity extends AppCompatActivity implements OnMapReadyC
     private NavigationMapRoute navigationMapRoute;
 
     private String TYPE_DATA = null;
-    private ArrayList<Legalcenters> legalcentersArrayList;
 
-    /*    Location currentLocation;
-    private FusedLocationProviderClient fusedLocationProviderClient;
-    private static final int REQUEST_CODE = 101;
-    private String TYPE_DATA = null;
-
-    private SupportMapFragment supportMapFragment;
-    private FusedLocationProviderClient client;
-
-    private GoogleMap myMap;
-
-    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

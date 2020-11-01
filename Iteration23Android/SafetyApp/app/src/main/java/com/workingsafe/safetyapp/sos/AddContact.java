@@ -73,25 +73,11 @@ public class AddContact extends AppCompatActivity implements CompoundButton.OnCh
         getSupportActionBar().setTitle("Add Contact");
         isChecked = false;
 
-      /*  Toast.makeText(getApplicationContext(), "Address : "+reverseGeocode,
-                Toast.LENGTH_SHORT).show();*/
-
         if(switchCase!=null)
         {
             switchCase.setOnCheckedChangeListener(AddContact.this);
         }
         ArrayList<ContactPerson> contactPersonList = contactHelper.getAllCotacts();
-        /*Toast.makeText(getApplicationContext(), "Number of persons: "+contactPersonList.size(),
-                Toast.LENGTH_SHORT).show();*/
-/*        Toast.makeText(getApplicationContext(), "Number of persons: "+contactPersonArrayList.size(),
-                Toast.LENGTH_SHORT).show();
-        for(ContactPerson contactPerson: contactPersonArrayList){
-            Log.d("ProductVideo",contactPerson.getMessage()+" boolean "+contactPerson.isShareLocation());
-            Toast.makeText(getApplicationContext(), "Number of Messages: "+contactPerson.getId(),
-                    Toast.LENGTH_SHORT).show();
-            contactHelper.deleteContact(contactPerson.getId());
-        }*/
-       // sendSMSService.startActionSMS(getApplicationContext(),contactPersonArrayList);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

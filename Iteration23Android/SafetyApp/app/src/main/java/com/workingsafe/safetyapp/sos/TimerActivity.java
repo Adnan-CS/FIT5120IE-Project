@@ -54,17 +54,13 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 
 public class TimerActivity extends AppCompatActivity {
 
-    /*private FButton startTimerButton;*/
-    /*private FButton stopTimerButton;*/
+
     private FButton pauseTimerButton;
     private FButton resumeTimerButton;
     private CircularView circularViewWithTimer;
     private ContactHelper contactHelper;
     private String address;
-/*    private MapboxMap map;
-    private PermissionsManager permissionsManager;
-    private Point originPoint;
-    private MapboxNavigation navigation;*/
+
     LocationManager locationManager;
     String latitude, longitude;
     private static final int REQUEST_LOCATION = 1;
@@ -72,8 +68,7 @@ public class TimerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
-        /*startTimerButton = findViewById(R.id.startTimeBtn);*/
-        /*stopTimerButton = findViewById(R.id.stopTimeBtn);*/
+
         pauseTimerButton = findViewById(R.id.pauseTimeBtn);
         resumeTimerButton = findViewById(R.id.resumeTimeBtn);
         circularViewWithTimer = findViewById(R.id.circular_view);
@@ -83,18 +78,6 @@ public class TimerActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions( this,
                 new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         getLastKnownLocation();
-        /*startTimerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                circularViewWithTimer.startTimer();
-            }
-        });*/
-/*        stopTimerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                circularViewWithTimer.stopTimer();
-            }
-        });*/
         pauseTimerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,11 +184,6 @@ public class TimerActivity extends AppCompatActivity {
 
                 } else {
 
-                    // No result for your request were found.
-                    //Log.d(TAG, "onResponse: No result found");
-                    /*Toast.makeText(getApplicationContext(), "No result found",
-                            Toast.LENGTH_SHORT).show();*/
-
                 }
             }
 
@@ -232,11 +210,6 @@ public class TimerActivity extends AppCompatActivity {
                 try{
                     for(int j=0;j<contactPersonList.size();j++) {
                         if(newAddress.length()>0){
-/*                            if(contactPersonList.get(j).isShareLocation()){
-                                message = contactPersonList.get(j).getMessage() + "\nAddress: "+ newAddress;
-                            }else{
-                                message = contactPersonList.get(j).getMessage();
-                            }*/
                             message = "Emergency Help\nMessage: "+contactPersonList.get(j).getMessage() + "\nAddress: "+ newAddress;
                         }else{
                             message = contactPersonList.get(j).getMessage();
@@ -244,7 +217,6 @@ public class TimerActivity extends AppCompatActivity {
 
                         SmsManager smsManager = SmsManager.getDefault();
                         smsManager.sendTextMessage(contactPersonList.get(j).getNumber(), null, message, null, null);
-                        //sendBroadcastMessage("Result:"+ (j+1) + " "+ contactPersonList.get(j).getNumber());
 
                     }
                 }catch (Exception e){
@@ -257,12 +229,6 @@ public class TimerActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean hasMessageSent)
         {
-/*            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(TimerActivity.this, "Please Pinch-to-zoom", Toast.LENGTH_SHORT).show();
-                }
-            }, 3000);*/
             if(hasMessageSent){
                 Toast.makeText(TimerActivity.this, "SMS has been sent", Toast.LENGTH_SHORT).show();
             }else{
